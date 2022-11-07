@@ -13,5 +13,6 @@ namespace BookStoreAPI.Services.Interfaces
 		public bool UpdateBook(BookReq book);
 		public Book GetBook(int idBook);
 		public Tuple<int, List<Book>> Search(string condition, string keywork);
+		public bool DelBook(int id);
 	}
 }

@@ -26,7 +26,14 @@ namespace BookStoreAPI.Model
         public virtual DbSet<Topic> Topics { get; set; }
         public virtual DbSet<User> Users { get; set; }
 
-      
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+                optionsBuilder.UseMySql("server=localhost;user=root;database=bookstore", Microsoft.EntityFrameworkCore.ServerVersion.Parse("10.4.24-mariadb"));
+            }
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -38,6 +45,8 @@ namespace BookStoreAPI.Model
                 entity.ToTable("author");
 
                 entity.Property(e => e.Id).HasColumnType("int(11)");
+
+                entity.Property(e => e.IsDel).HasColumnName("isDel");
 
                 entity.Property(e => e.Name)
                     .IsRequired()
@@ -69,6 +78,8 @@ namespace BookStoreAPI.Model
                 entity.Property(e => e.Image)
                     .IsRequired()
                     .HasMaxLength(500);
+
+                entity.Property(e => e.IsDel).HasColumnName("isDel");
 
                 entity.Property(e => e.Name)
                     .IsRequired()
@@ -116,6 +127,8 @@ namespace BookStoreAPI.Model
 
                 entity.Property(e => e.IdUser).HasColumnType("int(11)");
 
+                entity.Property(e => e.IsDel).HasColumnName("isDel");
+
                 entity.HasOne(d => d.IdChatRoomNavigation)
                     .WithMany(p => p.Chatdetails)
                     .HasForeignKey(d => d.IdChatRoom)
@@ -139,6 +152,8 @@ namespace BookStoreAPI.Model
                 entity.Property(e => e.IdChat).HasColumnType("int(11)");
 
                 entity.Property(e => e.IdUser).HasColumnType("int(11)");
+
+                entity.Property(e => e.IsDel).HasColumnName("isDel");
             });
 
             modelBuilder.Entity<Invoice>(entity =>
@@ -152,6 +167,8 @@ namespace BookStoreAPI.Model
                     .HasMaxLength(50);
 
                 entity.Property(e => e.Created).HasColumnType("datetime");
+
+                entity.Property(e => e.IsDel).HasColumnName("isDel");
 
                 entity.Property(e => e.Name)
                     .IsRequired()
@@ -193,6 +210,8 @@ namespace BookStoreAPI.Model
 
                 entity.Property(e => e.IdProduct).HasColumnType("int(11)");
 
+                entity.Property(e => e.IsDel).HasColumnName("isDel");
+
                 entity.Property(e => e.Name)
                     .IsRequired()
                     .HasMaxLength(20);
@@ -222,6 +241,8 @@ namespace BookStoreAPI.Model
 
                 entity.Property(e => e.Id).HasColumnType("int(11)");
 
+                entity.Property(e => e.IsDel).HasColumnName("isDel");
+
                 entity.Property(e => e.Name)
                     .IsRequired()
                     .HasMaxLength(50);
@@ -232,6 +253,8 @@ namespace BookStoreAPI.Model
                 entity.ToTable("user");
 
                 entity.Property(e => e.Id).HasColumnType("int(11)");
+
+                entity.Property(e => e.IsDel).HasColumnName("isDel");
 
                 entity.Property(e => e.Name)
                     .IsRequired()

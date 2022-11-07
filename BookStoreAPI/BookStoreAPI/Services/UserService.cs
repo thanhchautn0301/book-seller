@@ -28,6 +28,13 @@ namespace BookStoreAPI.Services
 			return _context.SaveChanges() <= 0 ? 0 : 1;
 		}
 
+		public bool DelUser(int id)
+		{
+			var user = _context.Users.Find();
+			if (user is null) return false;
+			user.IsDel = true;
+			return _context.SaveChanges() > 0;
+		}
 
 		public User Login(UserReq userReq)
 		{

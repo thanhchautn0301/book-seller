@@ -32,6 +32,7 @@ namespace BookStoreAPI.Controllers
 			}
 			return Ok(new BaseResponse());
 		}
+
 		[HttpPost("login")]
 		public IActionResult Login([FromBody] UserReq user)
 		{
@@ -43,7 +44,17 @@ namespace BookStoreAPI.Controllers
 			}
 			return Ok(new BaseResponse { Data = rs });
 		}
-
+		[HttpDelete]
+		public IActionResult DelUser(int id)
+		{
+			if (id <= 0) return BadRequest(new BaseResponse { StatusCode = 400, Message = "BadRequest" });
+		
+			if (!_userService.DelUser(id))
+			{
+				return BadRequest(new BaseResponse { StatusCode = 400, Message = "BadRequest" });
+			}
+			return Ok(new BaseResponse ());
+		}
 	}
 }
 

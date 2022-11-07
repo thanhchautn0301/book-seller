@@ -40,7 +40,7 @@ namespace BookStoreAPI.Services
 		{
 			var topic = _context.Topics.Find(idTopic);
 			if (topic is null) return false;
-			_context.Topics.Remove(topic);
+			topic.IsDel = true;
 			return _context.SaveChanges() > 0;
 		}
 	}

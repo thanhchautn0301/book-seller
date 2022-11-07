@@ -14,6 +14,7 @@ namespace BookStoreAPI.Model
 
         public int IdChat { get; set; }
         public int IdUser { get; set; }
+        public bool IsDel { get; set; }
 
         public virtual ICollection<Chatdetail> Chatdetails { get; set; }
     }

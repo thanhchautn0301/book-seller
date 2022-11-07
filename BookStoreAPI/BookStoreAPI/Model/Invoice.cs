@@ -17,5 +17,6 @@ namespace BookStoreAPI.Model
         public string Address { get; set; }
         public int ShippingFee { get; set; }
         public string PaymentCode { get; set; }
+        public bool IsDel { get; set; }
     }
 }

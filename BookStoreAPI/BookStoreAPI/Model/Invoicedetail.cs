@@ -18,6 +18,7 @@ namespace BookStoreAPI.Model
         public string Name { get; set; }
         public int Quantity { get; set; }
         public int IdInvoice { get; set; }
+        public bool IsDel { get; set; }
 
         public virtual Invoicedetail IdInvoiceNavigation { get; set; }
         public virtual Book IdProductNavigation { get; set; }

@@ -15,5 +15,6 @@ namespace BookStoreAPI.Dtos
 		public int IdTopic { get; set; }
 		public string IdPrice { get; set; }
 		public int IdAuthor { get; set; }
+		public bool IsDel { get; set; } = false;
 	}
 }

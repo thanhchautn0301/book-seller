@@ -13,6 +13,7 @@ namespace BookStoreAPI.AutoMapper
 			MapTopi();
 			MapInvoice();
 			MapUser();
+			MapInvoiceDetail();
 		}
 		private void MapBook()
 		{
@@ -30,6 +31,10 @@ namespace BookStoreAPI.AutoMapper
 		private void MapUser()
 		{
 			CreateMap<UserReq, User>();
+		}
+		private void MapInvoiceDetail()
+		{
+			CreateMap<InvoiceDetailReq, Invoicedetail>();
 		}
 	}
 }

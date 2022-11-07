@@ -69,7 +69,17 @@ namespace BookStoreAPI.Controllers
 			return Ok(new BaseResponse { Data = new { totalPage = rs.Item1, listBook = rs.Item2 } });
 		}
 
-
+		[HttpDelete]
+		public IActionResult DeleteBook(int id)
+		{
+			if (id <= 0) return BadRequest(new BaseResponse { StatusCode = 400, Message = "BadRequest" });
+			var rs = _bookSerivce.DelBook(id);
+			if (!_bookSerivce.DelBook(id))
+			{
+				return BadRequest(new BaseResponse { StatusCode = 400, Message = "BadRequest" });
+			}
+			return Ok(new BaseResponse());
+		}
 
 	}
 }

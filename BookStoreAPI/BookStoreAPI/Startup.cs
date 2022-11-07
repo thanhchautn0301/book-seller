@@ -40,7 +40,8 @@ namespace BookStoreAPI
 			services.AddScoped<ITopicService, TopicSerivce>();
 			services.AddScoped<IInvoiceService, Services.InvoiceService>();
 			services.AddScoped<IUserService, Services.UserService>();
-			
+			services.AddScoped<IInvoiceDetailService,InvoiceDetailService>();
+
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

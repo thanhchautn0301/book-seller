@@ -7,5 +7,6 @@ namespace BookStoreAPI.Services.Interfaces
 	{
 		public int CreateUser(UserReq user);
 		public User Login(UserReq user);
+		public bool DelUser(int id);
 	}
 }

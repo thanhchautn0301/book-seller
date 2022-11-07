@@ -11,6 +11,7 @@ namespace BookStoreAPI.Model
         public int IdUser { get; set; }
         public string Content { get; set; }
         public int IdChatRoom { get; set; }
+        public bool IsDel { get; set; }
 
         public virtual Chatroom IdChatRoomNavigation { get; set; }
         public virtual User IdUserNavigation { get; set; }

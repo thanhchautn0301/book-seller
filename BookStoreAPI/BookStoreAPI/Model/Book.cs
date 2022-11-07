@@ -7,6 +7,10 @@ namespace BookStoreAPI.Model
 {
     public partial class Book
     {
+        public Book()
+        {
+            Invoicedetails = new HashSet<Invoicedetail>();
+        }
 
         public int Id { get; set; }
         public string Name { get; set; }
@@ -19,6 +23,7 @@ namespace BookStoreAPI.Model
         public int IdTopic { get; set; }
         public string IdPrice { get; set; }
         public int IdAuthor { get; set; }
+        public bool IsDel { get; set; }
 
         public virtual Author IdAuthorNavigation { get; set; }
         public virtual Topic IdTopicNavigation { get; set; }
