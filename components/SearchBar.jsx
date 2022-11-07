@@ -9,7 +9,7 @@ const SearchBar = ({ options }) => {
     setIsOpen(!isOpen);
   };
   return (
-    <div className="p-2 flex gap-2">
+    <div className="p-2 flex gap-2 pr-0">
       <div className="flex flex-col min-w-[100px] relative">
         <button
           className="border rounded-md p-2 w-full 
@@ -22,7 +22,7 @@ const SearchBar = ({ options }) => {
           </div>
         </button>
         {isOpen && (
-          <div className="w-full bg-gray-50 border rounded-sm absolute top-[110%]">
+          <div className="w-full bg-gray-50 border rounded-sm absolute top-[110%] z-50">
             {options.map((option) => {
               return (
                 <button
