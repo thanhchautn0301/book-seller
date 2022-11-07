@@ -7,7 +7,11 @@ namespace BookStoreAPI.Model
 {
     public partial class Invoicedetail
     {
-      
+        public Invoicedetail()
+        {
+            InverseIdInvoiceNavigation = new HashSet<Invoicedetail>();
+        }
+
         public int Id { get; set; }
         public int IdProduct { get; set; }
         public int Price { get; set; }

@@ -16,6 +16,7 @@ namespace BookStoreAPI.Controllers
 		{
 			_userService = userService;
 		}
+
 		[HttpPost]
 		public IActionResult CreateUser([FromBody] UserReq user)
 		{
@@ -31,19 +32,18 @@ namespace BookStoreAPI.Controllers
 			}
 			return Ok(new BaseResponse());
 		}
-
-		[HttpPost]
-		public IActionResult Login([FromBody] UserReq userReq)
+		[HttpPost("login")]
+		public IActionResult Login([FromBody] UserReq user)
 		{
-			if (userReq is null) return BadRequest(new BaseResponse { StatusCode = 400, Message = "BadRequest" });
-			var user = _userService.Login(userReq);
-			if (user is null)
+			if (user is null) return BadRequest(new BaseResponse { StatusCode = 400, Message = "BadRequest" });
+			var rs = _userService.Login(user);
+			if (rs is null)
 			{
-				return Ok(new BaseResponse { StatusCode = 200, Message = "User or Password Invalid" });
+				return Ok(new BaseResponse { StatusCode = 200, Message = "Username or Pssword invalid" });
 			}
-			return Ok(new BaseResponse { Data = user });
+			return Ok(new BaseResponse { Data = rs });
 		}
-			
-		}
+
 	}
+}
 

@@ -2098,11 +2098,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\NAM\\Desktop\\BookStoreAPI\\BookStoreAPI\\BookStoreAPI.csproj",
+      "projectUniqueName": "C:\\Users\\NAM\\Desktop\\book-seller\\BookStoreAPI\\BookStoreAPI\\BookStoreAPI.csproj",
       "projectName": "BookStoreAPI",
-      "projectPath": "C:\\Users\\NAM\\Desktop\\BookStoreAPI\\BookStoreAPI\\BookStoreAPI.csproj",
+      "projectPath": "C:\\Users\\NAM\\Desktop\\book-seller\\BookStoreAPI\\BookStoreAPI\\BookStoreAPI.csproj",
       "packagesPath": "C:\\Users\\NAM\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\NAM\\Desktop\\BookStoreAPI\\BookStoreAPI\\obj\\",
+      "outputPath": "C:\\Users\\NAM\\Desktop\\book-seller\\BookStoreAPI\\BookStoreAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\NAM\\NuGet.Config",

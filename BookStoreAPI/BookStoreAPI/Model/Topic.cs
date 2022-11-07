@@ -7,7 +7,10 @@ namespace BookStoreAPI.Model
 {
     public partial class Topic
     {
-    
+        public Topic()
+        {
+            Books = new HashSet<Book>();
+        }
 
         public int Id { get; set; }
         public string Name { get; set; }

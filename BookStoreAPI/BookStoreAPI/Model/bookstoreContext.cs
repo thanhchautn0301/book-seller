@@ -21,12 +21,12 @@ namespace BookStoreAPI.Model
         public virtual DbSet<Book> Books { get; set; }
         public virtual DbSet<Chatdetail> Chatdetails { get; set; }
         public virtual DbSet<Chatroom> Chatrooms { get; set; }
+        public virtual DbSet<Invoice> Invoices { get; set; }
         public virtual DbSet<Invoicedetail> Invoicedetails { get; set; }
-        public virtual DbSet<Ivoice> Ivoices { get; set; }
         public virtual DbSet<Topic> Topics { get; set; }
         public virtual DbSet<User> Users { get; set; }
 
-  
+      
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -141,6 +141,44 @@ namespace BookStoreAPI.Model
                 entity.Property(e => e.IdUser).HasColumnType("int(11)");
             });
 
+            modelBuilder.Entity<Invoice>(entity =>
+            {
+                entity.ToTable("invoice");
+
+                entity.Property(e => e.Id).HasColumnType("int(11)");
+
+                entity.Property(e => e.Address)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.Created).HasColumnType("datetime");
+
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.PaymentCode)
+                    .IsRequired()
+                    .HasMaxLength(100)
+                    .HasColumnName("paymentCode");
+
+                entity.Property(e => e.Phone)
+                    .IsRequired()
+                    .HasMaxLength(12);
+
+                entity.Property(e => e.ShippingFee)
+                    .HasColumnType("int(11)")
+                    .HasColumnName("shippingFee");
+
+                entity.Property(e => e.Status)
+                    .IsRequired()
+                    .HasMaxLength(10);
+
+                entity.Property(e => e.Total).HasColumnType("int(11)");
+
+                entity.Property(e => e.Updated).HasColumnType("datetime");
+            });
+
             modelBuilder.Entity<Invoicedetail>(entity =>
             {
                 entity.ToTable("invoicedetail");
@@ -176,44 +214,6 @@ namespace BookStoreAPI.Model
                     .HasForeignKey(d => d.IdProduct)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("invoicedetail_ibfk_2");
-            });
-
-            modelBuilder.Entity<Ivoice>(entity =>
-            {
-                entity.ToTable("ivoice");
-
-                entity.Property(e => e.Id).HasColumnType("int(11)");
-
-                entity.Property(e => e.Address)
-                    .IsRequired()
-                    .HasMaxLength(50);
-
-                entity.Property(e => e.Created).HasColumnType("datetime");
-
-                entity.Property(e => e.Name)
-                    .IsRequired()
-                    .HasMaxLength(50);
-
-                entity.Property(e => e.PaymentCode)
-                    .IsRequired()
-                    .HasMaxLength(100)
-                    .HasColumnName("paymentCode");
-
-                entity.Property(e => e.Phone)
-                    .IsRequired()
-                    .HasMaxLength(12);
-
-                entity.Property(e => e.ShippingFee)
-                    .HasColumnType("int(11)")
-                    .HasColumnName("shippingFee");
-
-                entity.Property(e => e.Status)
-                    .IsRequired()
-                    .HasMaxLength(10);
-
-                entity.Property(e => e.Total).HasColumnType("int(11)");
-
-                entity.Property(e => e.Updated).HasColumnType("datetime");
             });
 
             modelBuilder.Entity<Topic>(entity =>

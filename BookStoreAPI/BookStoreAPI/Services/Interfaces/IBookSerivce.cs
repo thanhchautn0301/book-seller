@@ -2,6 +2,8 @@
 using BookStoreAPI.Model;
 using System.Collections.Generic;
 using BookStoreAPI.Dtos;
+using System;
+
 namespace BookStoreAPI.Services.Interfaces
 {
 	public interface IBookSerivce
@@ -10,5 +12,6 @@ namespace BookStoreAPI.Services.Interfaces
 		public bool CreateBook(BookReq book);
 		public bool UpdateBook(BookReq book);
 		public Book GetBook(int idBook);
+		public Tuple<int, List<Book>> Search(string condition, string keywork);
 	}
 }

@@ -3,6 +3,7 @@ using BookStoreAPI.Dtos;
 using BookStoreAPI.Model;
 using BookStoreAPI.Services.Interfaces;
 using Stripe;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -10,7 +11,7 @@ namespace BookStoreAPI.Services
 {
 	public class BookService : IBookSerivce
 	{
-		private readonly int pageSize = 10;
+		private readonly int pageSize = 9;
 		private readonly bookstoreContext _context;
 		private readonly IMapper _mapper;
 
@@ -46,6 +47,28 @@ namespace BookStoreAPI.Services
 		{
 
 			return _context.Books.Find(idBook);
+		}
+
+		public Tuple<int, List<Book>> Search(string condition, string keywork)
+		{
+			var books = new List<Book>();
+			if (keywork is null)
+			{
+				books = _context.Books.Skip(0).Take(pageSize).ToList();
+				return Tuple.Create( books.Count()/9 + 1, books);
+			}
+			switch (condition)
+			{
+				case "topic":
+					books = _context.Books.Where(e => e.IdTopicNavigation.Name.Contains(keywork)).Skip(0).Take(pageSize).ToList();
+					return Tuple.Create(books.Count() / 9 + 1, books);
+				case "author":
+					books = _context.Books.Where(e => e.IdAuthorNavigation.Name.Contains(keywork)).Skip(0).Take(pageSize).ToList();
+					return Tuple.Create(books.Count() / 9 + 1, books);
+				default:
+					books = _context.Books.Where(e => e.Name.Contains(keywork)).Skip(0).Take(pageSize).ToList();
+					return Tuple.Create(books.Count() / 9 + 1, books);
+			}
 		}
 	}
 }

@@ -1,5 +1,4 @@
-﻿
-using BookStoreAPI.Model;
+﻿using BookStoreAPI.Model;
 using BookStoreAPI.Services;
 using BookStoreAPI.Services.Interfaces;
 using Microsoft.AspNetCore.Builder;
@@ -33,10 +32,15 @@ namespace BookStoreAPI
 			services.AddControllers();
 			services.AddSwaggerGen();
 			services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+			services.AddCors(o =>
+			{
+				o.AddPolicy("CorsPolicy", builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+			});
 			services.AddScoped<IBookSerivce, BookService>();
 			services.AddScoped<ITopicService, TopicSerivce>();
 			services.AddScoped<IInvoiceService, Services.InvoiceService>();
 			services.AddScoped<IUserService, Services.UserService>();
+			
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,7 +54,7 @@ namespace BookStoreAPI
 			}
 			StripeConfiguration.ApiKey = Configuration.GetSection("Stripe")["SecretKey"];
 			app.UseHttpsRedirection();
-			
+			app.UseCors("CorsPolicy");
 			app.UseRouting();
 
 			app.UseEndpoints(endpoints =>

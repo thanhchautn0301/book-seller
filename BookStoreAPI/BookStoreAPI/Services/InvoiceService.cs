@@ -16,7 +16,7 @@ namespace BookStoreAPI.Services
 		}
 		public bool CreateInvoice(InvoiceReq invoice)
 		{
-			_context.Ivoices.Add(_mapper.Map<Model.Ivoice>(invoice));
+			_context.Invoices.Add(_mapper.Map<Model.Invoice>(invoice));
 
 			return _context.SaveChanges() > 0;
 		}

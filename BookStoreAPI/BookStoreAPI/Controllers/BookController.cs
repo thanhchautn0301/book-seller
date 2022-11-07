@@ -3,7 +3,9 @@ using BookStoreAPI.Model;
 using BookStoreAPI.Responses;
 using BookStoreAPI.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-
+using System.Collections.Generic;
+using System.Dynamic;
+using System.Security.Cryptography;
 
 namespace BookStoreAPI.Controllers
 {
@@ -58,6 +60,16 @@ namespace BookStoreAPI.Controllers
 			}
 			return Ok(new BaseResponse { Data = book});
 		}
+
+
+		[HttpGet("Search")]
+		public IActionResult Search(string? condition, string keywork)
+		{
+			var rs = _bookSerivce.Search(condition, keywork);
+			return Ok(new BaseResponse { Data = new { totalPage = rs.Item1, listBook = rs.Item2 } });
+		}
+
+
 
 	}
 }
