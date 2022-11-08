@@ -56,7 +56,7 @@ namespace BookStoreAPI
 				app.UseSwaggerUI();
 			}
 			StripeConfiguration.ApiKey = Configuration.GetSection("Stripe")["SecretKey"];
-			app.UseHttpsRedirection();
+
 			app.UseCors("CorsPolicy");
 			app.UseRouting();
 
