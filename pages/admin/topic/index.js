@@ -1,5 +1,19 @@
 import DashboardLayout from "../../../layouts/dashboard";
-import {Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@mui/material";
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
+import InfoIcon from '@mui/icons-material/Info';
+import Link from 'next/link'
+import {
+    Button,
+    IconButton,
+    Paper,
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableHead,
+    TableRow
+} from "@mui/material";
 
 export default function Admin(){
     const account =  {
@@ -7,20 +21,37 @@ export default function Admin(){
         displayName : 'Admin',
         email: 'Admin'
     }
+    const id = 1;
     return (
         <DashboardLayout user={account}>
+            <Button variant="text">Create</Button>
+
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
                         <TableRow>
                             <TableCell>#</TableCell>
                             <TableCell>Name</TableCell>
-                            <TableCell align="right">Name</TableCell>
+                            <TableCell align="right">Actions</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
                         <TableRow>
-                            <TableCell>No thing to show</TableCell>
+                            <TableCell component="th" scope="row">1
+                            </TableCell>
+                            <TableCell >Nguyễn Ngọc Ngạn</TableCell>
+                            <TableCell align="right">
+                                <Link href={`topic/${id}/edit`}>
+                                    <IconButton aria-label="edit">
+                                        <EditIcon />
+                                    </IconButton>
+                                </Link>
+                                <Link href={`topic/${id}/edit`}>
+                                    <IconButton aria-label="delete">
+                                        <DeleteIcon />
+                                    </IconButton>
+                                </Link>
+                            </TableCell>
                         </TableRow>
                         {/*{rows.map((row) => (*/}
                         {/*    <TableRow*/}
