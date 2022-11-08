@@ -31,10 +31,12 @@ namespace BookStoreAPI
 			services.AddDbContext<bookstoreContext>(otp => otp.UseMySql(conn, ver));
 			services.AddControllers();
 			services.AddSwaggerGen();
+			
 			services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 			services.AddCors(o =>
 			{
-				o.AddPolicy("CorsPolicy", builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+				o.AddPolicy("CorsPolicy", builder => builder.AllowAnyOrigin().AllowAnyHeader()
+												  .AllowAnyMethod());
 			});
 			services.AddScoped<IBookSerivce, BookService>();
 			services.AddScoped<ITopicService, TopicSerivce>();
