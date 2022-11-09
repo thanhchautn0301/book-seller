@@ -1,20 +1,9 @@
 import DashboardLayout from "../../../layouts/dashboard";
+import {Button, Link, Paper, Table, TableBody, TableCell, TableContainer,  IconButton, TableHead, TableRow} from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
-import InfoIcon from '@mui/icons-material/Info';
-import Link from 'next/link'
-import {
-    Button,
-    IconButton,
-    Paper,
-    Table,
-    TableBody,
-    TableCell,
-    TableContainer,
-    TableHead,
-    TableRow
-} from "@mui/material";
-import Authors from "../../../lib/api/authors";
+
+
 
 export default function Admin(){
     const account =  {
@@ -25,30 +14,31 @@ export default function Admin(){
     const id = 1;
     return (
         <DashboardLayout user={account}>
-            <Link href={`topic/new`}>
+            <Link href={`invoice/new`}>
             <Button variant="text">Create</Button>
             </Link>
+            <br/>
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
                         <TableRow>
                             <TableCell>#</TableCell>
                             <TableCell>Name</TableCell>
-                            <TableCell align="right">Actions</TableCell>
+                            <TableCell align="right">Name</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
                         <TableRow>
-                            <TableCell component="th" scope="row">1
+                        <TableCell component="th" scope="row">1
                             </TableCell>
                             <TableCell >Nguyễn Ngọc Ngạn</TableCell>
                             <TableCell align="right">
-                                <Link href={`topic/${id}/edit`}>
+                                <Link href={`invoice/${id}/edit`}>
                                     <IconButton aria-label="edit">
                                         <EditIcon />
                                     </IconButton>
                                 </Link>
-                                <Link href={`topic/${id}/edit`}>
+                                <Link href={`invoice/${id}/edit`}>
                                     <IconButton aria-label="delete">
                                         <DeleteIcon />
                                     </IconButton>
