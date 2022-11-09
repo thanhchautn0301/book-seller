@@ -10,7 +10,11 @@ const Counting = () => {
 
   return (
     <div className="border p-4 rounded w-[68px] relative mt-1">
-      <input type="number" value={num} onInput={handleNumChange} className="absolute outline-none inset-0 p-2" />
+      <input type="number" 
+        value={num}
+        onInput={handleNumChange} 
+        className="absolute outline-none inset-0 p-2"
+        min={0} />
     </div>
   );
 };
