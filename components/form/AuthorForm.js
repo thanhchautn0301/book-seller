@@ -3,11 +3,6 @@ import {useEffect, useState} from "react";
 
 export default function AuthorForm({onSubmit,initialData={}}) {
     const {register, handleSubmit, setValue} = useForm({defaultValues: initialData})
-    useEffect(() => {
-        register('startDate');
-        register('endDate');
-    }, [register])
-
     return (
         <form onSubmit={handleSubmit(onSubmit)  }>
             <div className="form-group">
