@@ -1,4 +1,3 @@
-import { withPageAuthRequired } from "@auth0/nextjs-auth0";
 import stripe from "../../../../config/stripe";
 
 export default async function checkoutHandler(req, res) {
