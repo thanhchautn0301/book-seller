@@ -17,7 +17,7 @@ export default function TopicForm({onSubmit,initialData={}}) {
                     name="name"
                     type="text"
                     className="form-control"
-                    id="title"/>
+                    id="title" style={{ marginLeft: 20 }}/>
             </div>
             <button
                 type="submit"

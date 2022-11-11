@@ -7,8 +7,8 @@ export default async function handleInvoice(req,res){
     }
     else if(req.method === 'PATCH'){
         try {
-            const {accessToken} = await auth0.getSession(req,res)
-            const json = await new Invoices(accessToken).update(req.query.id,req.body)
+            //const {accessToken} = await auth0.getSession(req,res)
+            const json = await new Invoices().update(req.query.id,req.body)
             return res.json(json.data);
         }catch (e){
             return res.status(e.status||422).json(e.response.data)

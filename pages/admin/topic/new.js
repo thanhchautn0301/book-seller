@@ -22,10 +22,10 @@ export default function CreateTopic(){
         displayName : 'Admin',
         email: 'Admin'
     }
-    const [createAuthor,{data,loading,error}] = useCreateTopic()
+    const [createTopic,{data,loading,error}] = useCreateTopic()
     return (
         <DashboardLayout user={account}>
-            <TopicForm onSubmit={createAuthor}></TopicForm>
+            <TopicForm onSubmit={createTopic}></TopicForm>
         </DashboardLayout>
     )
 }

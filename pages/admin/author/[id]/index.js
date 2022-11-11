@@ -1,5 +1,4 @@
 import {useRouter} from "next/router";
-import {useGetTopic} from "../../../../actions/topic";
 import DashboardLayout from "../../../../layouts/dashboard";
 import TopicForm from "../../../../components/form/TopicForm";
 import Author from "../../../../lib/api/authors"

@@ -1,8 +1,7 @@
 import {useForm} from "react-hook-form";
 import {useEffect, useState} from "react";
 
-
-export default function InvoiceForm({onSubmit,initialData={}}) {
+export default function BookForm({onSubmit,initialData={}}) {
     const {register, handleSubmit, setValue} = useForm({defaultValues: initialData})
     useEffect(() => {
         register('startDate');
@@ -10,10 +9,9 @@ export default function InvoiceForm({onSubmit,initialData={}}) {
     }, [register])
 
     return (
-        
         <form onSubmit={handleSubmit(onSubmit)  }>
             <div className="form-group">
-                <label htmlFor="name" >Name</label>
+                <label htmlFor="name">Name</label>
                 <input
                     {...register("name")}
                     name="name"
@@ -22,59 +20,58 @@ export default function InvoiceForm({onSubmit,initialData={}}) {
                     id="title" style={{ marginLeft: 20 }}/>
             </div>
             <div className="form-group">
-                <label htmlFor="phone">Phone</label>
+                <label htmlFor="image">urlImg</label>
                 <input
-                    {...register("phone")}
-                    name="phone"
+                    {...register("image")}
+                    name="image"
                     type="text"
                     className="form-control"
-                    id="phone" style={{ marginLeft: 20 }}/>
+                    id="title" style={{ marginLeft: 20 }}/>
             </div>
             <div className="form-group">
-                <label htmlFor="address">Address</label>
-                <input
-                    {...register("address")}
-                    name="address"
+                 <label htmlFor="description">Description</label>
+                <textarea
+                    {...register("description")}
+                    name="description"
                     type="text"
                     className="form-control"
-                    id="address" style={{ marginLeft: 20 }}/>
-            </div>
-            
-            <div className="form-group">
-                <label htmlFor="total">Total</label>
-                <input
-                    {...register("total")}
-                    name="total"
-                    type="text"
-                    className="form-control"
-                    id="total" style={{ marginLeft: 20 }}/>
+                    id="title" style={{ marginLeft: 20 }}/>
             </div>
             <div className="form-group">
-                <label htmlFor="shippingFee">Shipping Fee</label>
+                 <label htmlFor="price">Price</label>
                 <input
-                    {...register("shippingFee")}
-                    name="shippingFee"
+                    {...register("price")}
+                    name="price"
                     type="text"
                     className="form-control"
-                    id="shippingFee" style={{ marginLeft: 20 }}/>
-            </div>
+                    id="title" style={{ marginLeft: 20 }}/>
+                     </div>
             <div className="form-group">
-                <label htmlFor="paymentCode">Payment Code </label>
+                <label htmlFor="quantity">Quantity</label>
                 <input
-                    {...register("paymentCode")}
-                    name="PaymentCode"
+                    {...register("quantity")}
+                    name="quantity"
                     type="text"
                     className="form-control"
-                    id="PaymentCode" style={{ marginLeft: 20 }}/>
-            </div>
+                    id="title" style={{ marginLeft: 20 }}/>
+                     </div>
             <div className="form-group">
-                <label htmlFor="status">Status</label>
+                <label htmlFor="publication_date">Publication Date</label>
                 <input
-                    {...register("status")}
-                    name="status"
+                    {...register("publication_date")}
+                    name="publication_date"
                     type="text"
                     className="form-control"
-                    id="status" style={{ marginLeft: 20 }}/>
+                    id="title" style={{ marginLeft: 20 }}/>
+                     </div>
+            <div className="form-group">
+                <label htmlFor="page">Page</label>
+                <input
+                    {...register("page")}
+                    name="page"
+                    type="text"
+                    className="form-control"
+                    id="title" style={{ marginLeft: 20 }}/>  
             </div>
             <button
                 type="submit"

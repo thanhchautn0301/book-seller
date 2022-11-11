@@ -6,13 +6,13 @@ export default function AuthorForm({onSubmit,initialData={}}) {
     return (
         <form onSubmit={handleSubmit(onSubmit)  }>
             <div className="form-group">
-                <label htmlFor="name">Name</label>
+                <label htmlFor="name" >Name</label>
                 <input
                     {...register("name")}
                     name="name"
                     type="text"
                     className="form-control"
-                    id="title"/>
+                    id="title" style={{ marginLeft: 20 }} />
             </div>
             <button
                 type="submit"

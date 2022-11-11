@@ -2,7 +2,8 @@ import {useRouter} from "next/router";
 import DashboardLayout from "../../../../layouts/dashboard";
 import { useGetAuthor, useUpdateAuthor } from "../../../../actions/author";
 import AuthorForm from "../../../../components/form/AuthorForm";
-
+import {toast} from "react-toastify";
+import Router from 'next/router'
 export default function AuthorEdit({user}){
     const router = useRouter()
 
@@ -12,7 +13,8 @@ export default function AuthorEdit({user}){
     const _updateAuthor = async (data) => {
         try{
             await updateAuthor(router.query.id, data);
-            toast.success('Portfolio has been updated!')
+            toast.success('Author has been updated!')
+            Router.push("/admin/author");
         }catch (e) {
             toast.error('Error : '+e)
         }
