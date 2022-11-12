@@ -11,6 +11,11 @@ const navConfig = [
     icon: icon('ic_analytics'),
   },
   {
+    title: 'Book',
+    path: '/admin/book',
+    icon: icon('ic_user'),
+  },
+  {
     title: 'Author',
     path: '/admin/author',
     icon: icon('ic_user'),
