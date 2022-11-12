@@ -3,6 +3,7 @@ import Authors from "../../../../lib/api/authors";
 export default async function handleInvoice(req,res){
     if(req.method === 'GET'){
         const json = await new Authors().getById(req.query.id)
+        console.log(res.json(json.data));
         return res.json(json.data);
     }
     else if(req.method === 'PATCH'){

@@ -3,6 +3,7 @@ import {useGetTopic} from "../../../../actions/topic";
 import DashboardLayout from "../../../../layouts/dashboard";
 import TopicForm from "../../../../components/form/TopicForm";
 import Topic from "../../../../lib/api/topics"
+
 export default function TopicDetail({topic}){
     const router = useRouter()
     const account =  {
@@ -10,30 +11,34 @@ export default function TopicDetail({topic}){
         displayName : 'Admin',
         email: 'Admin'
     }
-    const {data: dateU,error,loading} =  useGetTopic()
+     const {data: dateU,error,loading} =  useGetTopic()
     return(
         <DashboardLayout user={account}>
-            {dataa&&<>
-
+          {topic &&<>
+            <div className="form-group">
+                <label htmlFor="name">Name</label>
+                <label  style={{ marginLeft: 20 }}> {topic.name} </label>
+            </div>
             </>}
         </DashboardLayout>
     )
 }
 export async function getStaticProps({params}) {
     const rs = await new Topic().getById(params.id)
-    const portfolio = rs.data
+    const topic = rs.data
     return {
-        props: {portfolio}
+        props: {topic}
     }
 }
 
 export async function getStaticPaths(){
     const rs = await new Topic().getAll()
-    const portfolios = rs.data
-    const paths = portfolios.map(portfolio=>{
+    const topics = rs.data.content
+    console.log(topics)
+    const paths = topics.map(topic=>{
         return {
-            params: {id:portfolio._id}
+            params: {id: topic.id.toString()}
         }
     })
-    return {paths, fallback:true}
+     return {paths, fallback:true}
 }
