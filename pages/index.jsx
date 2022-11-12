@@ -19,12 +19,16 @@ export default function Home() {
   const [books, setBooks] = useState([]);
   const [pageNumb, setPageNumb] = useState(1)
   const router = useRouter()
+  const priceList = ['price_1M3BKoBxW21DvjRJIT0FXbu5','price_1M3BKABxW21DvjRJvz5LvZXT','price_1M2HgEBxW21DvjRJDYEkmf1Z','price_1M2H8TBxW21DvjRJcdyAmwqo']
   const {keyword} = router.query
   useEffect(() => {
     // getPaymentLink().then(res => {
     //   console.log(res)
     // })
     getBooks(keyword).then((res) => {
+      axios.get('/api/v1/stripe/books').then(res => {
+        console.log(res.data);
+      })
       setPageNumb(res.totalPages)
       setBooks(res.content);
     });
@@ -42,8 +46,8 @@ export default function Home() {
           <div className="flex-1">
             <div className="flex-1 book-list grid sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
               {books.length > 0 &&
-                books.map((book) => {
-                  return <Book {...book} />;
+                books.map((book,index) => {
+                  return <Book {...book} key={book.id} priceId={priceList[index]} />;
                 })}
             </div>
           </div>

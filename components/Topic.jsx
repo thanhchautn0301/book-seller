@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useEffect } from "react";
 import { useState } from "react";
 import { getTopics } from "../services/topic";
@@ -16,12 +17,13 @@ const Topic = () => {
         {topics.length > 0 &&
           topics.map((topic) => {
             return (
-              <a
+              <Link
                 href={`http://localhost:3000?keyword=${topic.name}`}
                 className="block p-2 text-sm hover:text-orange-400 border-b-[1px]"
+                key={topic.id}
               >
                 {topic.name}
-              </a>
+              </Link>
             );
           })}
       </div>

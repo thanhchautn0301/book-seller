@@ -1,7 +1,9 @@
 import axios from "axios";
 
-export const getPaymentLink = async () => {
-    return await axios.get('/api/v1/stripe/checkout').then( (res) => {
+export const getPaymentLink = async (bookList) => {
+    return await axios.post('/api/v1/stripe/checkout',{
+      bookList: bookList
+    }).then( (res) => {
         return res.data.paymentLink
       })
 }

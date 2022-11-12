@@ -42,7 +42,7 @@ export default function Details() {
         </div>
         <div className="w-full flex-1 flex gap-5">
           <Topic />
-          <BookDetails {...book} />
+          <BookDetails {...book} priceId='price_1M3BKABxW21DvjRJvz5LvZXT'/>
         </div>
       </div>
       <footer className="footer bg-gray-200 px-2 sm:px-20 xl:px-36 min-h-[72px] max-h-[100px] flex items-center">

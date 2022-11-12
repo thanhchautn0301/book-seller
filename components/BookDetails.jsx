@@ -1,9 +1,24 @@
 import Image from "next/image";
+import { useRouter } from "next/router";
 import React from "react";
+import { useState } from "react";
+import { useCallback } from "react";
+import { getPaymentLink } from "../services/stripe";
 import Counting from "./Counting";
 import Topic from "./Topic";
 
-function BookDetails({ id, name, image, price, quantity, description }) {
+function BookDetails({ id, name, image , priceId, price, quantity, description }) {
+const [totalQuantity,setTotalQuantity] = useState(1)
+const router = useRouter();
+const handleBuy = () => {
+  const bookList = [{
+    priceId: priceId,
+    quantity: totalQuantity,
+  }]
+  getPaymentLink(bookList).then(res => {
+   router.push(res.url)
+  })
+}
   return (
     <div className="flex-1 flex gap-5 border p-4">
       <div className="relative object-cover max-h-[500px] min-w-[250px]">
@@ -33,11 +48,16 @@ function BookDetails({ id, name, image, price, quantity, description }) {
           </div>
           <div className="text-gray-500 text-sm font-semibold">
             Số lượng:
-            <Counting />
+            <Counting 
+              totalQuantity={totalQuantity} 
+              changeQuantity={setTotalQuantity} 
+            />
           </div>
         </div>
         <div>
-          <button className="bg-orange-500 text-white p-2 rounded hover:bg-orange-400">
+          <button className="bg-orange-500 text-white p-2 rounded
+           hover:bg-orange-400"
+           onClick={handleBuy}>
             Mua ngay
           </button>
         </div>
