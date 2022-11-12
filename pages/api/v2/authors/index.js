@@ -1,5 +1,5 @@
 import Authors from "../../../../lib/api/authors";
-
+import auth0 from "../../../../utils/auth0";
 export default async (req,res)=>{
     try{
         const {accessToken} = await auth0.getSession(req,res)

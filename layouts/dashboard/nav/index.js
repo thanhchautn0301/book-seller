@@ -31,7 +31,6 @@ Nav.propTypes = {
 
 export default function Nav({ openNav, onCloseNav, user }) {
   const { pathname } = useRouter();
-
   const isDesktop = useResponsive('up', 'lg');
 
   useEffect(() => {
@@ -55,15 +54,15 @@ export default function Nav({ openNav, onCloseNav, user }) {
       <Box sx={{ mb: 5, mx: 2.5 }}>
         <Link underline="none">
           <StyledAccount>
-            <Avatar src={user.photoURL} alt="photoURL" />
+            {/*<Avatar src={user.picture} alt="photoURL" />*/}
 
             <Box sx={{ ml: 2 }}>
               <Typography variant="subtitle2" sx={{ color: 'text.primary' }}>
-                {user.displayName}
+                {user.name}
               </Typography>
 
               <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                {user.role}
+                {/*{user.role}*/}
               </Typography>
             </Box>
           </StyledAccount>

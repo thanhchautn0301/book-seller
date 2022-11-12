@@ -1,4 +1,5 @@
 import Authors from "../../../../lib/api/authors";
+import auth0 from "../../../../utils/auth0";
 
 export default async function handleInvoice(req,res){
     if(req.method === 'GET'){
