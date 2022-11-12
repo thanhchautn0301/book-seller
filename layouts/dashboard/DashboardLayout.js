@@ -34,7 +34,6 @@ const Main = styled('div')(({ theme }) => ({
 export default function DashboardLayout(props) {
   const {children,user} = props;
   const [open, setOpen] = useState(false);
-
   return (
     <StyledRoot>
       <Header  user={user} onOpenNav={() => setOpen(true)} />
