@@ -2,6 +2,7 @@ import DashboardLayout from "../../../layouts/dashboard";
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import Link from 'next/link'
+import InfoTwoToneIcon from '@mui/icons-material/InfoTwoTone';
 import Topic from "../../../lib/api/topics"
 import {
     Button,
@@ -52,6 +53,11 @@ export default function Topics({topics}){
                             <Link href={`topic/${item.id}/edit`}>
                                 <IconButton aria-label="delete">
                                     <DeleteIcon />
+                                </IconButton>
+                            </Link>
+                            <Link href={`topic/${item.id}`}>
+                                <IconButton aria-label="Detail">
+                                    <InfoTwoToneIcon />
                                 </IconButton>
                             </Link>
                         </TableCell>

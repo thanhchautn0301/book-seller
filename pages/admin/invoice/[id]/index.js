@@ -1,6 +1,7 @@
 import {useRouter} from "next/router";
 import DashboardLayout from "../../../../layouts/dashboard";
 import Invoice from "../../../../lib/api/invoices"
+import moment from 'moment';
 import { useGetInvoice } from "../../../../actions/invoice";
 export default function InvoiceDetail({invoice}){
     const router = useRouter()
@@ -13,7 +14,47 @@ export default function InvoiceDetail({invoice}){
     return(
         <DashboardLayout user={account}>
             {invoice&&<>
-
+                <div className="form-group">
+                <label htmlFor="name" >Name</label>
+                <label style={{ marginLeft: 20 }}>{invoice.name}</label>
+            </div>
+            <div className="form-group">
+                <label htmlFor="phone">Phone</label>
+                <label style={{ marginLeft: 20 }}>{invoice.phone}</label>
+            </div>
+            <div className="form-group">
+                <label htmlFor="address">Address</label>
+                <label style={{ marginLeft: 20 }}>{invoice.address}</label>
+            </div>
+            
+            <div className="form-group">
+                <label htmlFor="total">Total</label>
+                <label style={{ marginLeft: 20 }}>{invoice.total}</label>
+            </div>
+            <div className="form-group">
+                <label htmlFor="shippingFee">Shipping Fee</label>
+                <label style={{ marginLeft: 20 }}>{invoice.shippingFee}</label>
+            </div>
+            <div className="form-group">
+                <label htmlFor="payment_code">Payment Code </label>
+                <label style={{ marginLeft: 20 }}>{invoice.paymentCode}</label>
+            </div>
+            <div className="form-group">
+                <label htmlFor="status">Status</label>
+                <label style={{ marginLeft: 20 }}>{invoice.status}</label>
+            </div>
+            <div className="form-group">
+                <label htmlFor="Created">Created</label>
+                <label style={{ marginLeft: 20 }}>{!invoice.created ? "" : moment(invoice.created).format("DD/MM/YYYY")}</label>
+            </div>
+            <div className="form-group">
+                <label htmlFor="Updated">Updated</label>
+                <label style={{ marginLeft: 20 }}>{!invoice.created ? "" : moment(invoice.updated).format("DD/MM/YYYY")}</label>
+            </div>
+            <div className="form-group">
+                <label htmlFor="isDel">isDel</label>
+                <label style={{ marginLeft: 20 }}>{invoice.isDel ? "true":"false"}</label>
+            </div>
             </>}
         </DashboardLayout>
     )
@@ -28,10 +69,10 @@ export async function getStaticProps({params}) {
 
 export async function getStaticPaths(){
     const rs = await new Invoice().getAll()
-    const invoices = rs.data
+    const invoices = rs.data.content
     const paths = invoices.map(invoice=>{
         return {
-            params: {id:invoice._id}
+            params: {id:invoice.id.toString()}
         }
     })
     return {paths, fallback:true}

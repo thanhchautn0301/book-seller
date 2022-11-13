@@ -3,6 +3,7 @@ import {useEffect, useState} from "react";
 
 
 export default function InvoiceForm({onSubmit,initialData={}}) {
+ 
     const {register, handleSubmit, setValue} = useForm({defaultValues: initialData})
     useEffect(() => {
         register('startDate');
@@ -69,12 +70,11 @@ export default function InvoiceForm({onSubmit,initialData={}}) {
             </div>
             <div className="form-group">
                 <label htmlFor="status">Status</label>
-                <input
-                    {...register("status")}
-                    name="status"
-                    type="text"
-                    className="form-control"
-                    id="status" style={{ marginLeft: 20 }}/>
+                <select name="status" id="status"  {...register("status")} style={{ marginLeft: 20 }}>
+                    <option value="Lên Đơn">Lên Đơn</option>
+                    <option value="Đang Ship">Đang Ship</option>
+                    <option value="Hoàn Tất">Hoàn Tất</option>
+                </select>
             </div>
             <button
                 type="submit"
