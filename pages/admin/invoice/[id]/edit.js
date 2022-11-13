@@ -2,19 +2,21 @@ import {useGetTopic, useUpdateTopic} from "../../../../actions/topic";
 import {useRouter} from "next/router";
 import TopicForm from "../../../../components/form/TopicForm";
 import DashboardLayout from "../../../../layouts/dashboard";
-import Router from 'next/router';
+import { useGetInvoice, useUpdateInvoice } from "../../../../actions/invoice";
+import InvoiceForm from "../../../../components/form/InvoiceForm";
 import {toast} from "react-toastify";
+import Router from 'next/router'
 export default function TopicEdit({user}){
     const router = useRouter()
 
-    const [updateTopic,{data,error,loading}] =  useUpdateTopic()
-    const {data: initialData} =  useGetTopic(router.query.id)
+    const [updateInvoice,{data,error,loading}] =  useUpdateInvoice()
+    const {data: initialData} =  useGetInvoice(router.query.id)
     //useGetData(router.query.id?`/api/v1/posts/${router.query.id}`:null)
-    const _updateTopic = async (data) => {
+    const _updateInvoice = async (data) => {
         try{
-            await updateTopic(router.query.id, data);
-            toast.success('Portfolio has been updated!')
-            Router.push("/admin/topic");
+            await updateInvoice(router.query.id, data);
+            toast.success('invoice has been updated!')
+            Router.push("/admin/invoice");
         }catch (e) {
             toast.error('Error : '+e)
         }
@@ -26,9 +28,9 @@ export default function TopicEdit({user}){
     }
     return(
         <DashboardLayout user={account}>
-            {initialData && <TopicForm
+            {initialData && <InvoiceForm
                 initialData = {initialData}
-                onSubmit={_updateTopic}
+                onSubmit={_updateInvoice}
             />}
         </DashboardLayout>
     )

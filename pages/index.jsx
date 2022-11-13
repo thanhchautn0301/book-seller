@@ -2,54 +2,52 @@ import { useUser } from "@auth0/nextjs-auth0";
 import { ShoppingCartIcon } from "@heroicons/react/24/solid";
 import axios from "axios";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import { useState } from "react";
 import { useEffect } from "react";
 import Book from "../components/Book";
 import Header from "../components/Header";
 import Pagination from "../components/Pagination";
 import SearchBar from "../components/SearchBar";
+import SubHeader from "../components/SubHeader";
 import Topic from "../components/Topic";
 import { getBooks } from "../services/book";
 import { getPaymentLink } from "../services/stripe";
 import styles from "../styles/Home.module.css";
 
 export default function Home() {
-  const options = [
-    { id: "author", name: "Tác giả" },
-    { id: "topic", name: "Chủ đề" },
-    { id: "book", name: "Sách" },
-  ];
   const [books, setBooks] = useState([]);
   const [pageNumb, setPageNumb] = useState(1)
+  const router = useRouter()
+  const priceList = ['price_1M3BKoBxW21DvjRJIT0FXbu5','price_1M3BKABxW21DvjRJvz5LvZXT','price_1M2HgEBxW21DvjRJDYEkmf1Z','price_1M2H8TBxW21DvjRJcdyAmwqo']
+  const {keyword} = router.query
   useEffect(() => {
     // getPaymentLink().then(res => {
     //   console.log(res)
     // })
-    getBooks().then((res) => {
+    getBooks(keyword).then((res) => {
+      axios.get('/api/v1/stripe/books').then(res => {
+        console.log(res.data);
+      })
       setPageNumb(res.totalPages)
       setBooks(res.content);
     });
-  }, []);
+  }, [keyword]);
   const { user, error, isLoading } = useUser();
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>{error.message}</div>;
   return (
     <div className="min-h-[100vh] flex flex-col w-full">
       <Header />
-      <div className="header bg-orange-400 px-2 sm:px-20 py-2 xl:px-36 min-h-[72px] max-h-[100px] flex flex-wrap items-center justify-between">
-        <a href="/">
-          <Image src="/logo.png" width={150} height={100} />
-        </a>
-        <SearchBar options={options} />
-      </div>
+      <SubHeader />
       <div className="content bg-white flex-1 flex flex-col justify-between">
         <div className="flex-0 px-2 sm:px-20 xl:px-36 py-4 flex justify-between gap-4">
           <Topic />
           <div className="flex-1">
-            <div className="flex-1 book-list grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="flex-1 book-list grid sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
               {books.length > 0 &&
-                books.map((book) => {
-                  return <Book {...book} />;
+                books.map((book,index) => {
+                  return <Book {...book} key={book.id} priceId={priceList[index]} />;
                 })}
             </div>
           </div>
