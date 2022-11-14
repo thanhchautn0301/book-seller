@@ -7,7 +7,7 @@ export default async function handleInvoice(req,res){
     }
     else if(req.method === 'PATCH'){
         try {
-            const {accessToken} = await auth0.getSession(req,res)
+            const accessToken = process.env.TOKEN_API
             const json = await new ChatDetails(accessToken).update(req.query.id,req.body)
             return res.json(json.data);
         }catch (e){
