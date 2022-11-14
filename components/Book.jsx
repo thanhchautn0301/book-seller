@@ -19,7 +19,7 @@ const Book = ({ id, name, image, price, quantity, priceId }) => {
     const bookList = [
       {
         priceId: priceId,
-        quantity: quantity,
+        quantity: 1,
       },
     ];
     getPaymentLink(bookList).then((res) => {

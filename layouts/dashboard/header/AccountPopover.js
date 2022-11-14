@@ -53,7 +53,7 @@ export default function AccountPopover(props) {
           }),
         }}
       >
-        {/*<Avatar src={user.picture} alt="photoURL" />*/}
+        <Avatar src={user?.picture} alt="photoURL" />
       </IconButton>
 
       <Popover
@@ -80,7 +80,7 @@ export default function AccountPopover(props) {
             {user.name}
           </Typography>
           <Typography variant="body2" sx={{ color: 'text.secondary' }} noWrap>
-            {/*{user.email}*/}
+            {user.email}
           </Typography>
         </Box>
 
