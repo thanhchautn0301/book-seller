@@ -1,6 +1,14 @@
 import DashboardLayout from "../../layouts/dashboard";
-import Invoice from "../../lib/api/invoices"
-import {Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@mui/material";
+import Invoice from "../../lib/api/invoices";
+import {
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+} from "@mui/material";
 import withAuth from "../../hoc/withAuth";
 const Admin= ({user,invoices}) => {
     console.log(user)

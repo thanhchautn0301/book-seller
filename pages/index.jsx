@@ -26,9 +26,6 @@ export default function Home() {
     //   console.log(res)
     // })
     getBooks(keyword).then((res) => {
-      axios.get('/api/v1/stripe/books').then(res => {
-        console.log(res.data);
-      })
       setPageNumb(res.totalPages)
       setBooks(res.content);
     });
