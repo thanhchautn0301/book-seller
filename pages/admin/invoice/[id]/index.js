@@ -4,6 +4,7 @@ import Invoice from "../../../../lib/api/invoices"
 import moment from 'moment';
 import { useGetInvoice } from "../../../../actions/invoice";
 import TextField from '@mui/material/TextField';
+import Grid from '@mui/material/Grid';
 export default function InvoiceDetail({invoice}){
     const router = useRouter()
     const account =  {
@@ -15,40 +16,44 @@ export default function InvoiceDetail({invoice}){
     return(
         <DashboardLayout user={account}>
             {invoice&&<>
+                <Grid container justifyContent="center" xs={10}>
+                    <div>
             <div className="form-group">
-             <TextField  label="Name" variant="outlined" value={invoice.name} style={{ marginBottom: 20 }}   disabled/>
+             <TextField  label="Name" variant="outlined" value={invoice.name} style={{ marginBottom: 20, width: 400}}   disabled/>
             </div>
             <div className="form-group">
-            <TextField  label="Phone" variant="outlined" value={invoice.phone} style={{ marginBottom: 20 }}   disabled/>
+            <TextField  label="Phone" variant="outlined" value={invoice.phone} style={{ marginBottom: 20, width: 400}}  disabled/>
             </div>
             <div className="form-group">
-            <TextField  label="Address" variant="outlined" value={invoice.address} style={{ marginBottom: 20 }}   disabled/>
+            <TextField  label="Address" variant="outlined" value={invoice.address} style={{ marginBottom: 20, width: 400}}   disabled/>
 
             </div>
             
             <div className="form-group">
-            <TextField  label="Total" variant="outlined" value={invoice.Total} style={{ marginBottom: 20 }}   disabled/>
+            <TextField  label="Total" variant="outlined" value={invoice.Total}style={{ marginBottom: 20, width: 400}}   disabled/>
             </div>
             <div className="form-group">
-            <TextField  label="Shipping Fee" variant="outlined" value={invoice.shippingFee} style={{ marginBottom: 20 }}   disabled/>
+            <TextField  label="Shipping Fee" variant="outlined" value={invoice.shippingFee} style={{ marginBottom: 20, width: 400}}   disabled/>
     
             </div>
             <div className="form-group">
-            <TextField  label="Payment Code" variant="outlined" value={invoice.paymentCode} style={{ marginBottom: 20 }}   disabled/>
+            <TextField  label="Payment Code" variant="outlined" value={invoice.paymentCode} style={{ marginBottom: 20, width: 400}}   disabled/>
                
             </div>
             <div className="form-group">
-            <TextField  label="Status" variant="outlined" value={invoice.status} style={{ marginBottom: 20 }}   disabled/>
+            <TextField  label="Status" variant="outlined" value={invoice.status} style={{ marginBottom: 20, width: 400}}   disabled/>
             </div>
             <div className="form-group">
-            <TextField  label="Created" variant="outlined" value={!invoice.created ? "" : moment(invoice.created).format("DD/MM/YYYY")} style={{ marginBottom: 20 }}   disabled/>
+            <TextField  label="Created" variant="outlined" value={!invoice.created ? "" : moment(invoice.created).format("DD/MM/YYYY")} style={{ marginBottom: 20, width: 400}}  disabled/>
             </div>
             <div className="form-group">
-            <TextField  label="Updated" variant="outlined" value={!invoice.updated ? "" : moment(invoice.updated).format("DD/MM/YYYY")} style={{ marginBottom: 20 }}   disabled/>
+            <TextField  label="Updated" variant="outlined" value={!invoice.updated ? "" : moment(invoice.updated).format("DD/MM/YYYY")} style={{ marginBottom: 20, width: 400}}   disabled/>
             </div>
             <div className="form-group">
-            <TextField  label="isDel" variant="outlined" value={invoice.isDel ? "true":"false"} style={{ marginBottom: 20 }}   disabled/>
+            <TextField  label="isDel" variant="outlined" value={invoice.isDel ? "true":"false"} style={{ marginBottom: 20, width: 400}}  disabled/>
             </div>
+            </div>
+            </Grid>
             </>}
         </DashboardLayout>
     )
