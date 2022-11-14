@@ -3,7 +3,7 @@ import {useGetTopic} from "../../../../actions/topic";
 import DashboardLayout from "../../../../layouts/dashboard";
 import TopicForm from "../../../../components/form/TopicForm";
 import Topic from "../../../../lib/api/topics"
-
+import TextField from '@mui/material/TextField';
 export default function TopicDetail({topic}){
     const router = useRouter()
     const account =  {
@@ -16,8 +16,7 @@ export default function TopicDetail({topic}){
         <DashboardLayout user={account}>
           {topic &&<>
             <div className="form-group">
-                <label htmlFor="name">Name</label>
-                <label  style={{ marginLeft: 20 }}> {topic.name} </label>
+            <TextField  label="Name" variant="outlined" value={topic.name} style={{ marginBottom: 20 }}   disabled/>
             </div>
             </>}
         </DashboardLayout>

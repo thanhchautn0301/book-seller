@@ -3,6 +3,7 @@ import DashboardLayout from "../../../../layouts/dashboard";
 import Invoice from "../../../../lib/api/invoices"
 import moment from 'moment';
 import { useGetInvoice } from "../../../../actions/invoice";
+import TextField from '@mui/material/TextField';
 export default function InvoiceDetail({invoice}){
     const router = useRouter()
     const account =  {
@@ -14,46 +15,39 @@ export default function InvoiceDetail({invoice}){
     return(
         <DashboardLayout user={account}>
             {invoice&&<>
-                <div className="form-group">
-                <label htmlFor="name" >Name</label>
-                <label style={{ marginLeft: 20 }}>{invoice.name}</label>
+            <div className="form-group">
+             <TextField  label="Name" variant="outlined" value={invoice.name} style={{ marginBottom: 20 }}   disabled/>
             </div>
             <div className="form-group">
-                <label htmlFor="phone">Phone</label>
-                <label style={{ marginLeft: 20 }}>{invoice.phone}</label>
+            <TextField  label="Phone" variant="outlined" value={invoice.phone} style={{ marginBottom: 20 }}   disabled/>
             </div>
             <div className="form-group">
-                <label htmlFor="address">Address</label>
-                <label style={{ marginLeft: 20 }}>{invoice.address}</label>
+            <TextField  label="Address" variant="outlined" value={invoice.address} style={{ marginBottom: 20 }}   disabled/>
+
             </div>
             
             <div className="form-group">
-                <label htmlFor="total">Total</label>
-                <label style={{ marginLeft: 20 }}>{invoice.total}</label>
+            <TextField  label="Total" variant="outlined" value={invoice.Total} style={{ marginBottom: 20 }}   disabled/>
             </div>
             <div className="form-group">
-                <label htmlFor="shippingFee">Shipping Fee</label>
-                <label style={{ marginLeft: 20 }}>{invoice.shippingFee}</label>
+            <TextField  label="Shipping Fee" variant="outlined" value={invoice.shippingFee} style={{ marginBottom: 20 }}   disabled/>
+    
             </div>
             <div className="form-group">
-                <label htmlFor="payment_code">Payment Code </label>
-                <label style={{ marginLeft: 20 }}>{invoice.paymentCode}</label>
+            <TextField  label="Payment Code" variant="outlined" value={invoice.paymentCode} style={{ marginBottom: 20 }}   disabled/>
+               
             </div>
             <div className="form-group">
-                <label htmlFor="status">Status</label>
-                <label style={{ marginLeft: 20 }}>{invoice.status}</label>
+            <TextField  label="Status" variant="outlined" value={invoice.status} style={{ marginBottom: 20 }}   disabled/>
             </div>
             <div className="form-group">
-                <label htmlFor="Created">Created</label>
-                <label style={{ marginLeft: 20 }}>{!invoice.created ? "" : moment(invoice.created).format("DD/MM/YYYY")}</label>
+            <TextField  label="Created" variant="outlined" value={!invoice.created ? "" : moment(invoice.created).format("DD/MM/YYYY")} style={{ marginBottom: 20 }}   disabled/>
             </div>
             <div className="form-group">
-                <label htmlFor="Updated">Updated</label>
-                <label style={{ marginLeft: 20 }}>{!invoice.created ? "" : moment(invoice.updated).format("DD/MM/YYYY")}</label>
+            <TextField  label="Updated" variant="outlined" value={!invoice.updated ? "" : moment(invoice.updated).format("DD/MM/YYYY")} style={{ marginBottom: 20 }}   disabled/>
             </div>
             <div className="form-group">
-                <label htmlFor="isDel">isDel</label>
-                <label style={{ marginLeft: 20 }}>{invoice.isDel ? "true":"false"}</label>
+            <TextField  label="isDel" variant="outlined" value={invoice.isDel ? "true":"false"} style={{ marginBottom: 20 }}   disabled/>
             </div>
             </>}
         </DashboardLayout>

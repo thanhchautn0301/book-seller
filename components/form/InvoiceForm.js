@@ -1,9 +1,17 @@
 import {useForm} from "react-hook-form";
 import {useEffect, useState} from "react";
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import { style } from "@mui/system";
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import * as React from 'react';
+import Autocomplete from '@mui/material/Autocomplete';
 
-
+const options = ['Lên Đơn', 'Đang Ship', 'Hoàn Tất'];
 export default function InvoiceForm({onSubmit,initialData={}}) {
- 
+    const [value, setValue1] = React.useState(options[0]);
+    const [inputValue, setInputValue] = React.useState('');
     const {register, handleSubmit, setValue} = useForm({defaultValues: initialData})
     useEffect(() => {
         register('startDate');
@@ -11,75 +19,47 @@ export default function InvoiceForm({onSubmit,initialData={}}) {
     }, [register])
 
     return (
-        
+        <Grid container justifyContent="center" xs={10}>
         <form onSubmit={handleSubmit(onSubmit)  }>
-            <div className="form-group">
-                <label htmlFor="name" >Name</label>
-                <input
-                    {...register("name")}
-                    name="name"
-                    type="text"
-                    className="form-control"
-                    id="title" style={{ marginLeft: 20 }}/>
-            </div>
-            <div className="form-group">
-                <label htmlFor="phone">Phone</label>
-                <input
-                    {...register("phone")}
-                    name="phone"
-                    type="text"
-                    className="form-control"
-                    id="phone" style={{ marginLeft: 20 }}/>
-            </div>
-            <div className="form-group">
-                <label htmlFor="address">Address</label>
-                <input
-                    {...register("address")}
-                    name="address"
-                    type="text"
-                    className="form-control"
-                    id="address" style={{ marginLeft: 20 }}/>
-            </div>
-            
-            <div className="form-group">
-                <label htmlFor="total">Total</label>
-                <input
-                    {...register("total")}
-                    name="total"
-                    type="text"
-                    className="form-control"
-                    id="total" style={{ marginLeft: 20 }}/>
-            </div>
-            <div className="form-group">
-                <label htmlFor="shippingFee">Shipping Fee</label>
-                <input
-                    {...register("shippingFee")}
-                    name="shippingFee"
-                    type="text"
-                    className="form-control"
-                    id="shippingFee" style={{ marginLeft: 20 }}/>
-            </div>
-            <div className="form-group">
-                <label htmlFor="paymentCode">Payment Code </label>
-                <input
-                    {...register("paymentCode")}
-                    name="PaymentCode"
-                    type="text"
-                    className="form-control"
-                    id="PaymentCode" style={{ marginLeft: 20 }}/>
-            </div>
-            <div className="form-group">
-                <label htmlFor="status">Status</label>
-                <select name="status" id="status"  {...register("status")} style={{ marginLeft: 20 }}>
-                    <option value="Lên Đơn">Lên Đơn</option>
-                    <option value="Đang Ship">Đang Ship</option>
-                    <option value="Hoàn Tất">Hoàn Tất</option>
-                </select>
-            </div>
-            <button
-                type="submit"
-                className="btn btn-primary">Create
-            </button>
+                <div className="form-group">
+                    <TextField id="name" label="Name" variant="outlined"  {...register("name")} style={{ marginBottom: 20 }}/>
+                </div>
+                <div className="form-group">
+                    <TextField id="phone" label="Phone" variant="outlined"  {...register("phone")} style={{ marginBottom: 20 }}/>
+                </div>
+                <div className="form-group">
+                    <TextField id="address" label="Address" variant="outlined"  {...register("address")} style={{ marginBottom: 20 }}/>
+                </div>
+                <div className="form-group">
+                    <TextField id="total" label="Total" variant="outlined"  {...register("total")} style={{ marginBottom: 20 }}/>
+                </div>
+                <div className="form-group">
+                    <TextField id="shippingFee" label="shippingFee" variant="outlined"  {...register("shippingFee")} style={{ marginBottom: 20 }}/>
+                </div>
+                <div className="form-group">
+                    <TextField id="paymentCode" label="Payment Code" variant="outlined"  {...register("paymentCode")} style={{ marginBottom: 20 }}/>
+                </div>
+                <div className="form-group">
+                <Autocomplete
+                    
+                    value={value}
+                    onChange={(event, newValue) => {
+                    setValue(newValue);
+                    }}
+                    inputValue={inputValue}
+                    onInputChange={(event, newInputValue) => {
+                    setInputValue(newInputValue);
+                    }}
+                    id="Status"
+                    options={options}
+                    sx={{ width: 220 }}
+                    renderInput={(params) => <TextField {...params} label="Status" 
+                    style={{ marginBottom: 20 }}  {...register("status")} 
+                    />}
+                />
+                </div>
+            <Button variant="outlined" type="submit">Create</Button>
         </form>
+        </Grid>
     )
 }

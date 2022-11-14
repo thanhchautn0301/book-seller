@@ -3,6 +3,8 @@ import DashboardLayout from "../../../../layouts/dashboard";
 import Book from "../../../../lib/api/books"
 import moment from 'moment';
 import Image from "next/image";
+import Grid from '@mui/material/Grid';
+import TextField from '@mui/material/TextField';
 import { useGetInvoice } from "../../../../actions/invoice";
 export default function BookDetail({book}){
     const router = useRouter()
@@ -14,42 +16,38 @@ export default function BookDetail({book}){
     const {data: dateU,error,loading} =  useGetInvoice()
     return(
         <DashboardLayout user={account}>
+            
             {book&&<>
-                <div className="form-group">
-                <label htmlFor="name" >Name</label>
-                <label style={{ marginLeft: 20 }}>{book.name}</label>
+            <div className="form-group">
+                <TextField  label="Name" variant="outlined" value={book.name} style={{ marginBottom: 20 }}   disabled/>
             </div>
             <div className="form-group">
-                <label htmlFor="description">Description</label>
-                <label style={{ marginLeft: 20 }}>{book.description}</label>
+            <TextField  label="Description" variant="outlined" value={book.description} style={{ marginBottom: 20 }}   disabled/>
             </div>
             <div className="form-group">
-                <label htmlFor="price">Price</label>
-                <label style={{ marginLeft: 20 }}>{book.price}</label>
+                <TextField  label="Price" variant="outlined" value={book.price} style={{ marginBottom: 20 }}   disabled/>
             </div> 
             <div className="form-group">
-                <label htmlFor="quantity">Quantity</label>
-                <label style={{ marginLeft: 20 }}>{book.quantity}</label>
+                <TextField  label="Quantity" variant="outlined" value={book.quantity} style={{ marginBottom: 20 }}   disabled/>
             </div>
             <div className="form-group">
-                <label htmlFor="publicationDate">Publication Date</label>
-                <label style={{ marginLeft: 20 }}>{!book.publication_date ? "" : moment(book.publication_date).format("DD/MM/YYYY")}</label>
+            <TextField  label="Publication Date" variant="outlined" value={book.publicationDate  } style={{ marginBottom: 20 }} disabled  />
             </div>
             <div className="form-group">
-                <label htmlFor="isDel">isDel</label>
-                <label style={{ marginLeft: 20 }}>{book.is_del ? "true":"false"}</label>
+            <TextField  label="isDel" variant="outlined" value={book.is_del ? "true":"false"} style={{ marginBottom: 20 }}   disabled/>
             </div>
             <div className="form-group">
                 <Image width={250} height={250} src="/books/book1.jpg" />
             </div>
-          
             </>}
+            
         </DashboardLayout>
     )
 }
 export async function getStaticProps({params}) {
     const rs = await new Book().getById(params.id)
     const book = rs.data
+    console.log(book)
     return {
         props: {book}
     }
