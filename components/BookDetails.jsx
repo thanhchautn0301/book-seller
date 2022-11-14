@@ -22,7 +22,7 @@ const handleBuy = () => {
   return (
     <div className="flex-1 flex gap-5 border p-4">
       <div className="relative object-cover max-h-[500px] min-w-[250px]">
-        <Image src={process.env.NEXT_PUBLIC_GlobalURL.concat(image)} className="shadow-md" fill={true} />
+        <Image src={process.env.NEXT_PUBLIC_GlobalURL.concat(image)} className="shadow-md" alt="Book Photo" fill={true} />
       </div>
       <div className="book-info flex flex-col gap-4">
         <div>
@@ -37,7 +37,7 @@ const handleBuy = () => {
           <div className="text-gray-500 text-sm font-semibold">
             Giá:
             <span className="text-orange-500 font-bold text-lg ml-2">
-              {price}<span className="underline">đ</span>
+              {price}<span className="underline">$</span>
             </span>
             {/* <span className="text-gray-900 text-sm ml-2">Hết hàng</span> */}
           </div>
@@ -50,13 +50,14 @@ const handleBuy = () => {
             Số lượng:
             <Counting 
               totalQuantity={totalQuantity} 
-              changeQuantity={setTotalQuantity} 
+              changeQuantity={setTotalQuantity}
+              isDisabled={quantity > 0 ? false : true} 
             />
           </div>
         </div>
         <div>
-          <button className="bg-orange-500 text-white p-2 rounded
-           hover:bg-orange-400"
+          <button className={`bg-orange-500 text-white p-2 rounded
+           hover:bg-orange-400 cursor-pointer ${quantity > 0 ? 'opacity-100' : "hidden"}`}
            onClick={handleBuy}>
             Mua ngay
           </button>

@@ -9,7 +9,12 @@ module.exports = {
     extend: {
       fontFamily: {
         san: ['Open Sans','sans-serif','Poppins','san-serif']
-      }
+      },
+      variants: {
+        extend: {
+          opacity: ['disabled'],
+        }
+      },
     }
   },
   plugins: [],

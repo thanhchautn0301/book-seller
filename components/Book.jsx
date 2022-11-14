@@ -46,11 +46,10 @@ const Book = ({ id, name, image, price, quantity, priceId }) => {
 
           <div className="text-sm font-semibold px-4">
             {price}
-            <span className="underline">đ</span>
+            <span className="underline">$</span>
           </div>
           <div className="book-action p-4 text-sm flex flex-col gap-3">
             <button
-              href=""
               className="text-white bg-green-500
              hover:bg-green-400 p-2 rounded-sm flex items-center
               justify-center"

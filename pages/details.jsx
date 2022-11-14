@@ -1,6 +1,8 @@
 import { ShoppingCartIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
 import axios from "axios";
+import MessengerBox from "components/MessengerBox";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Book from "../components/Book";
@@ -31,9 +33,9 @@ export default function Details() {
       <div className="content px-2 bg-white flex-1 sm:px-20 xl:px-36 py-4 flex flex-col justify-between gap-4">
         <div className="bg-slate-100 w-full h-[50px] p-4">
           <div className="flex items-center text-sm gap-2">
-            <a href="/" className="hover:text-gray-500">
+            <Link href="/" className="hover:text-gray-500">
               Trang chủ
-            </a>
+            </Link>
             <ChevronRightIcon className="w-3 h-3" />
             <div className="hover:text-orange-400 text-orange-500">
               {book.name}
