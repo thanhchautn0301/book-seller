@@ -1,82 +1,54 @@
 import {useForm} from "react-hook-form";
 import {useEffect, useState} from "react";
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import { style } from "@mui/system";
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import Stack from '@mui/material/Stack';
+import { max } from "date-fns";
 
 export default function BookForm({onSubmit,initialData={}}) {
+    const curentDay = new Date();
     const {register, handleSubmit, setValue} = useForm({defaultValues: initialData})
     useEffect(() => {
         register('startDate');
         register('endDate');
     }, [register])
-
+    
     return (
+        <Grid container justifyContent="center" xs={10}>
         <form onSubmit={handleSubmit(onSubmit)  }>
-            <div className="form-group">
-                <label htmlFor="name">Name</label>
-                <input
-                    {...register("name")}
-                    name="name"
-                    type="text"
-                    className="form-control"
-                    id="title" style={{ marginLeft: 20 }}/>
-            </div>
-            <div className="form-group">
-                <label htmlFor="image">urlImg</label>
-                <input
-                    {...register("image")}
-                    name="image"
-                    type="text"
-                    className="form-control"
-                    id="title" style={{ marginLeft: 20 }}/>
-            </div>
-            <div className="form-group">
-                 <label htmlFor="description">Description</label>
-                <textarea
-                    {...register("description")}
-                    name="description"
-                    type="text"
-                    className="form-control"
-                    id="title" style={{ marginLeft: 20 }}/>
-            </div>
-            <div className="form-group">
-                 <label htmlFor="price">Price</label>
-                <input
-                    {...register("price")}
-                    name="price"
-                    type="text"
-                    className="form-control"
-                    id="title" style={{ marginLeft: 20 }}/>
-                     </div>
-            <div className="form-group">
-                <label htmlFor="quantity">Quantity</label>
-                <input
-                    {...register("quantity")}
-                    name="quantity"
-                    type="text"
-                    className="form-control"
-                    id="title" style={{ marginLeft: 20 }}/>
-                     </div>
-            <div className="form-group">
-                <label htmlFor="publication_date">Publication Date</label>
-                <input
-                    {...register("publication_date")}
-                    name="publication_date"
-                    type="text"
-                    className="form-control"
-                    id="title" style={{ marginLeft: 20 }}/>
-                     </div>
-            <div className="form-group">
-                <label htmlFor="page">Page</label>
-                <input
-                    {...register("page")}
-                    name="page"
-                    type="text"
-                    className="form-control"
-                    id="title" style={{ marginLeft: 20 }}/>  
-            </div>
-            <button
-                type="submit"
-                className="btn btn-primary">Create
-            </button>
+                <div className="form-group">
+                    <TextField id="name" label="Name" variant="outlined"  {...register("name")} style={{ marginBottom: 20 }}/>
+                </div>
+                <div className="form-group">
+                    <TextField id="image" label="urlImg" variant="outlined"  {...register("image")} style={{ marginBottom: 20 }}/>
+                </div>
+                <div className="form-group">
+                    <TextField id="description" label="Description" variant="outlined"  {...register("description")} style={{ marginBottom: 20 }}/>
+                </div>
+                <div className="form-group">
+                    <TextField id="price" label="Price" variant="outlined"  {...register("price")} style={{ marginBottom: 20 }}/>
+                </div>
+                <div className="form-group">
+                    <TextField id="quantity" label="Quantity" variant="outlined"  {...register("quantity")} style={{ marginBottom: 20 }}/>
+                </div>
+                <div className="form-group">
+                   
+                    <TextField
+                            id="publicationDate"
+                            label="Publication Date"
+                            type="date"
+                            defaultValue="2022-11-16"
+                            {...register("publicationDate")} style={{ marginBottom: 20}}
+                    />
+                </div>
+                <div className="form-group">
+                    <TextField id="page" label="Page" variant="outlined"  {...register("page")} style={{ marginBottom: 20 }}/>
+                </div>
+            <Button variant="outlined" type="submit">Create</Button>
         </form>
+        </Grid>
     )
 }
