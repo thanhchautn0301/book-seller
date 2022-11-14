@@ -4,7 +4,6 @@ import axios from "axios";
 
 export default async function handleInvoice(req,res){
     if(req.method === 'GET'){
-        const rs = await auth0.getSession(req,res)
         const json = await new Authors().getById(req.query.id)
         console.log(res.json(json.data));
         return res.json(json.data);
@@ -12,7 +11,7 @@ export default async function handleInvoice(req,res){
     else if(req.method === 'PATCH'){
         try {
             const rs = await auth0.getSession(req,res)
-            const {accessToken} = await axios.get(`/api/v2/authentication/getroles?sub=${rs.user.sub}`)
+            const accessToken = process.env.TOKEN_API
             const json = await new Authors(accessToken).update(req.query.id,req.body)
             return res.json(json.data);
         }catch (e){
