@@ -5,6 +5,7 @@ import { getPaymentLink } from "../services/stripe";
 import { useRouter } from "next/router";
 import { useRef } from "react";
 import Link from 'next/link'
+import { ToastContainer, toast } from 'react-toastify';
 // Book.propTypes = {
 //   id: PropTypes.string,
 //   name: PropTypes.string,
@@ -26,6 +27,10 @@ const Book = ({ id, name, image, price, quantity, priceId }) => {
       router.push(res.url);
     });
   };
+  const handleCart = (bookId) => {
+   toast(bookId)
+   console.log(bookId);
+  }
   return (
     <div className="border rounded flex gap-4 sm:flex-wrap lg:flex-nowrap">
       <div className="object-contain w-full relative min-h-[150px] overflow-hidden">
@@ -62,6 +67,7 @@ const Book = ({ id, name, image, price, quantity, priceId }) => {
             <button
               className="text-white bg-gray-100 hover:bg-gray-200
              p-2 rounded-sm flex items-center justify-center"
+             onClick={() => handleCart(id)}
             >
               <ShoppingCartIcon className="h-5 w-5 text-gray-500" />
             </button>
