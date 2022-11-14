@@ -1,4 +1,6 @@
 import Topics from "../../../../lib/api/topics";
+import auth0 from "../../../../utils/auth0";
+import axios from "axios";
 
 export default async function handleInvoice(req,res){
     if(req.method === 'GET'){
@@ -7,8 +9,9 @@ export default async function handleInvoice(req,res){
     }
     else if(req.method === 'PATCH'){
         try {
-           // const {accessToken} = await auth0.getSession(req,res)
-            const json = await new Topics().update(req.query.id,req.body)
+            const rs = await auth0.getSession(req,res)
+            const {accessToken} = await axios.get(`/api/v2/authentication/getroles?sub=${rs.user.sub}`)
+            const json = await new Topics(accessToken).update(req.query.id,req.body)
             return res.json(json.data);
         }catch (e){
             return res.status(e.status||422).json(e.response.data)
