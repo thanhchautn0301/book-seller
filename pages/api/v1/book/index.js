@@ -7,7 +7,7 @@ export default async function handler(req, res) {
       if(keyword !== 'undefined'){
         keywordCheck = keyword
       }
-      const books = await axios.get(encodeURI(`${process.env.BACKEND_API_URL}/search?keyword=${keywordCheck}`))
+      const books = await axios.get(encodeURI(`${process.env.BACKEND_API_URL}search?keyword=${keywordCheck}`))
       res.status(200).json({ books: books.data })
     }
     
