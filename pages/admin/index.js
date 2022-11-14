@@ -10,8 +10,7 @@ import {
   TableRow,
 } from "@mui/material";
 import withAuth from "../../hoc/withAuth";
-const Admin= ({user,invoices}) => {
-    console.log(user)
+const Admin =  ({user,invoices}) => {
     return (
         <DashboardLayout user={user}>
             <TableContainer component={Paper}>
@@ -48,8 +47,10 @@ const Admin= ({user,invoices}) => {
 // export const getServerSideProps = withAuth(async ({req, res}, user) => {
 //     const rs = await new Invoice().getAll()
 //     const invoices = rs.data.content
-//     return invoices
-// })();
+//      return {
+//         props: {invoices}
+//     }
+// });
 // export default Admin
 
 export async function getServerSideProps () {
