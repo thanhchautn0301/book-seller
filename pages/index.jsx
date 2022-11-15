@@ -23,9 +23,6 @@ export default function Home() {
   const router = useRouter();
   const { keyword } = router.query;
   useEffect(() => {
-    // getPaymentLink().then(res => {
-    //   console.log(res)
-    // })
     getBooks(keyword).then((res) => {
       setPageNumb(res.totalPages);
       setBooks(res.content);
@@ -45,9 +42,7 @@ export default function Home() {
             <div className="flex-1 book-list grid sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
               {books.length > 0 &&
                 books.map((book, index) => {
-                  return (
-                    <Book {...book} key={book.id} />
-                  );
+                  return <Book {...book} key={book.id} />;
                 })}
             </div>
           </div>

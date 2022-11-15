@@ -7,8 +7,8 @@ export default withApiAuthRequired(async function handler(req, res) {
       throw Error("Incorrect CheckoutSession ID.");
     }
     const checkout_session = await stripe.checkout.sessions.retrieve(id);
-
-    res.status(200).json({ checkout_session: checkout_session });
+    const listLineItems = await stripe.checkout.sessions.listLineItems(id)
+    res.status(200).json({ checkout_session: checkout_session, listLineItems: listLineItems});
   } catch (err) {
     res.status(500).json({ statusCode: 500, message: err.message });
   }
