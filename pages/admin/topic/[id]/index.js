@@ -3,7 +3,8 @@ import {useGetTopic} from "../../../../actions/topic";
 import DashboardLayout from "../../../../layouts/dashboard";
 import TopicForm from "../../../../components/form/TopicForm";
 import Topic from "../../../../lib/api/topics"
-
+import TextField from '@mui/material/TextField';
+import Grid from '@mui/material/Grid';
 export default function TopicDetail({topic}){
     const router = useRouter()
     const account =  {
@@ -15,10 +16,16 @@ export default function TopicDetail({topic}){
     return(
         <DashboardLayout user={account}>
           {topic &&<>
+            <Grid container justifyContent="center" xs={10}>
+                <div>
             <div className="form-group">
-                <label htmlFor="name">Name</label>
-                <label  style={{ marginLeft: 20 }}> {topic.name} </label>
+             <TextField  label="Name" variant="outlined" value={topic.name} style={{ marginBottom: 20, width: 400}}   disabled/>
             </div>
+            <div className="form-group">
+            <TextField  label="isDel" variant="outlined" value={topic.isDel ? "true":"false"} style={{ marginBottom: 20, width: 400}}  disabled/>
+            </div>
+            </div>
+            </Grid>
             </>}
         </DashboardLayout>
     )

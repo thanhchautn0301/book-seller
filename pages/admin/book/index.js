@@ -63,6 +63,7 @@ export default function Books({books}){
 export async function getServerSideProps () {
     const rs = await new Book().getAll()
     const books = rs.data.content
+    console.log(books)
     return {
         props: {books}
     }

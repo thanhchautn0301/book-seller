@@ -10,8 +10,7 @@ import {
   TableRow,
 } from "@mui/material";
 import withAuth from "../../hoc/withAuth";
-const Admin= ({user,invoices}) => {
-    console.log(user)
+const Admin =  ({user,invoices}) => {
     return (
         <DashboardLayout user={user}>
             <TableContainer component={Paper}>
@@ -20,10 +19,10 @@ const Admin= ({user,invoices}) => {
                         <TableRow>
                             <TableCell>#</TableCell>
                             <TableCell>Name</TableCell>
-                            <TableCell align="right">Phone</TableCell>
-                            <TableCell align="right">Address</TableCell>
-                            <TableCell align="right">Total</TableCell>
-                            <TableCell align="right">Status</TableCell>
+                            <TableCell align="left">Phone</TableCell>
+                            <TableCell align="left">Address</TableCell>
+                            <TableCell align="left">Total</TableCell>
+                            <TableCell align="left">Status</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -48,8 +47,10 @@ const Admin= ({user,invoices}) => {
 // export const getServerSideProps = withAuth(async ({req, res}, user) => {
 //     const rs = await new Invoice().getAll()
 //     const invoices = rs.data.content
-//     return invoices
-// })();
+//      return {
+//         props: {invoices}
+//     }
+// });
 // export default Admin
 
 export async function getServerSideProps () {
