@@ -17,7 +17,7 @@ import {
 } from "@mui/material";
 
 import withAuth from "../../../hoc/withAuth";
-export default function Topics({user,topics}){
+const Topics = ({user,topics}) => {
     return (
         <DashboardLayout user={user}>
             <Link href={`topic/new`}>
@@ -44,7 +44,7 @@ export default function Topics({user,topics}){
                                     <EditIcon />
                                 </IconButton>
                             </Link>
-                            <Link href={`topic/${item.id}/edit`}>
+                            <Link href={`topic/${item.id}/delete`}>
                                 <IconButton aria-label="delete">
                                     <DeleteIcon />
                                 </IconButton>

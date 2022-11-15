@@ -9,7 +9,6 @@ function MyApp({ Component, pageProps }) {
   return (
     <UserProvider>
       <Component {...pageProps} />
-      <MessengerBox />
       <ToastContainer />
     </UserProvider>
   );
