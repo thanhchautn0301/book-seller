@@ -8,7 +8,7 @@ import Link from "next/link";
 import { ToastContainer, toast } from "react-toastify";
 import { info } from "autoprefixer";
 import { setCart } from "services/cart";
-const Book = ({ id, name, image, price, quantity, priceId }) => {
+const Book = ({ id, name, image, price, quantity, priceId, }) => {
   const router = useRouter();
   const handleBuy = () => {
     const bookList = [
@@ -21,8 +21,8 @@ const Book = ({ id, name, image, price, quantity, priceId }) => {
       router.push(res.url);
     });
   };
-  const handleCart = (bookId, bookName, quantity) => {
-    setCart(bookId, bookName, quantity)
+  const handleCart = (bookId, bookName, price, quantity, priceId) => {
+    setCart(bookId, bookName, price, quantity, priceId);
   };
   return (
     <div className="border rounded flex gap-4 sm:flex-wrap lg:flex-nowrap">
@@ -67,7 +67,7 @@ const Book = ({ id, name, image, price, quantity, priceId }) => {
             <button
               className="text-white bg-gray-100 hover:bg-gray-200
              p-2 rounded-sm flex items-center justify-center outline-none"
-              onClick={() => handleCart(id, name, quantity)}
+              onClick={() => handleCart(id, name, price , quantity, priceId)}
             >
               <ShoppingCartIcon className="h-5 w-5 text-gray-500" />
             </button>

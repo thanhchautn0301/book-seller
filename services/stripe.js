@@ -1,10 +1,13 @@
 import axios from "axios";
 
-export const getPaymentLink = async (bookList) => {
+export const getPaymentLink = async (bookList,userEmail) => {
     return await axios.post('/api/v1/stripe/checkout',{
-      bookList: bookList
+      bookList: bookList,
+      userEmail: userEmail,
     }).then( (res) => {
-        return res.data.paymentLink
+        return res.data.paymentLink.url
+      }).catch(err => {
+        return 'http://localhost:3000/api/auth/login'
       })
 }
 

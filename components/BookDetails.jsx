@@ -7,7 +7,7 @@ import { getPaymentLink } from "../services/stripe";
 import Counting from "./Counting";
 import Topic from "./Topic";
 
-function BookDetails({ id, name, image , priceId, price, quantity, description }) {
+function BookDetails({ id, name, image , priceId, price, quantity, description, authorEntity,topicEntity }) {
 const [totalQuantity,setTotalQuantity] = useState(1)
 const router = useRouter();
 const handleBuy = () => {
@@ -27,6 +27,14 @@ const handleBuy = () => {
       <div className="book-info flex flex-col gap-4">
         <div>
           <div className="font-semibold text-lg mb-3">{name}</div>
+          <div className="mb-1">
+            <span className="text-gray-500 text-sm font-semibold">Tác giả:&nbsp;</span>
+            <span className="text-sm">{authorEntity?.name}</span>
+          </div>
+          <div className="mb-1">
+            <span className="text-gray-500 text-sm font-semibold">Chủ đề:&nbsp;</span>
+            <span className="text-sm">{topicEntity?.name}</span>
+          </div>
           <div className="text-gray-500 text-sm font-semibold mb-3">
             Tình trạng:
             {quantity > 0 && <span className="text-orange-500 text-sm ml-2">

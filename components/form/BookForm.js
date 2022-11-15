@@ -49,6 +49,7 @@ export default function BookForm({ onSubmit, initialData = {} }) {
             variant="outlined"
             {...register("description")}
             style={{ marginBottom: 20, width: 400  }}
+            required={true}
           />
         </div>
         <div className="form-group" style={{ width: "100%" }}>
@@ -58,6 +59,7 @@ export default function BookForm({ onSubmit, initialData = {} }) {
             variant="outlined"
             {...register("price")}
             style={{ marginBottom: 20, width: 400  }}
+            required={true}
           />
         </div>
         <div className="form-group" style={{ width: "100%" }}>
