@@ -6,7 +6,10 @@ import { useGetAuthor } from "../../../../actions/author";
 import {useRouter} from "next/router";
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
-export default function AuthorDetail({author}){
+import {Typography} from "@mui/material";
+
+import withAuth from "../../../../hoc/withAuth";
+const AuthorDetail = ({user,author})=>{
     const account =  {
         photoURL : 'https://scontent.fsgn2-4.fna.fbcdn.net/v/t39.30808-1/310613863_1790868551256247_407328907734636743_n.jpg?stp=c0.12.40.40a_cp0_dst-jpg_p40x40&_nc_cat=101&ccb=1-7&_nc_sid=7206a8&_nc_ohc=uNI8bBHFiSkAX9h4hSi&_nc_ht=scontent.fsgn2-4.fna&oh=00_AfCAZiyHh97YWf4KEqP6eeVchgWV-Hl0MuHBnj87mcfMXQ&oe=636E0B58',
         displayName : 'Admin',
@@ -15,6 +18,9 @@ export default function AuthorDetail({author}){
      const {data: dateU,error,loading} =  useGetAuthor()
     return(
         <DashboardLayout user={account} >
+            <Typography variant="h3" component="h4">
+                All author
+            </Typography>
              {author &&<>  <Grid container justifyContent="center" xs={10}>
                 <div>
             <div className="form-group">
@@ -47,3 +53,4 @@ export async function getStaticPaths(){
     })
     return {paths, fallback:true}
 }
+export default withAuth(AuthorDetail)();

@@ -42,5 +42,5 @@ export const withAuth = getData => role => async({req,res}) =>{
 }
 
 export const isAuthorized = (user,role) =>{
-    return user
+    return true
 }
