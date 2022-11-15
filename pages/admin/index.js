@@ -43,16 +43,6 @@ const Admin =  ({user,invoices}) => {
         </DashboardLayout>
     )
 }
-
-// export const getServerSideProps = withAuth(async ({req, res}, user) => {
-//     const rs = await new Invoice().getAll()
-//     const invoices = rs.data.content
-//      return {
-//         props: {invoices}
-//     }
-// });
-// export default Admin
-
 export async function getServerSideProps () {
     // const user = await new.
     const rs = await new Invoice().getAll()

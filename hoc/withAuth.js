@@ -6,14 +6,13 @@ import axios from "axios";
 const withAuth = Component => role => {
     return props => {
         const {data, loading} = useGetUser()
+        if (loading) {
+            return <p>Loading...</p>
+        }
         if (!data) {
-            // return <Redirect ssr toUrl={'/api/auth/login'}/>
+            return <Redirect ssr toUrl={'/api/auth/login'}/>
         } else {
-            if (!isAuthorized(data, role)) {
-                // return <Redirect ssr toUrl={'/api/auth/login'}/>
-            }
             return <Component user={data} loading={loading} {...props}/>
-
         }
     }
 }
