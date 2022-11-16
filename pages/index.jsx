@@ -1,8 +1,10 @@
 import { useUser } from "@auth0/nextjs-auth0";
 import { ShoppingCartIcon } from "@heroicons/react/24/solid";
 import axios from "axios";
+import MessengerBox from "components/MessengerBox";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import Script from "next/script";
 import { useState } from "react";
 import { useEffect } from "react";
 import Book from "../components/Book";
@@ -17,16 +19,15 @@ import styles from "../styles/Home.module.css";
 
 export default function Home() {
   const [books, setBooks] = useState([]);
-  const [pageNumb, setPageNumb] = useState(1)
-  const router = useRouter()
-  const priceList = ['price_1M3BKoBxW21DvjRJIT0FXbu5','price_1M3BKABxW21DvjRJvz5LvZXT','price_1M2HgEBxW21DvjRJDYEkmf1Z','price_1M2H8TBxW21DvjRJcdyAmwqo']
-  const {keyword} = router.query
+  const [pageNumb, setPageNumb] = useState(1);
+  const router = useRouter();
+  const { keyword } = router.query;
   useEffect(() => {
     // getPaymentLink().then(res => {
     //   console.log(res)
     // })
     getBooks(keyword).then((res) => {
-      setPageNumb(res.totalPages)
+      setPageNumb(res.totalPages);
       setBooks(res.content);
     });
   }, [keyword]);
@@ -43,14 +44,16 @@ export default function Home() {
           <div className="flex-1">
             <div className="flex-1 book-list grid sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
               {books.length > 0 &&
-                books.map((book,index) => {
-                  return <Book {...book} key={book.id} priceId={priceList[index]} />;
+                books.map((book, index) => {
+                  return (
+                    <Book {...book} key={book.id} />
+                  );
                 })}
             </div>
           </div>
         </div>
         <div className="p-2 pt-0">
-          <Pagination pageNumb={pageNumb}/>
+          <Pagination pageNumb={pageNumb} />
         </div>
       </div>
       <footer className="footer bg-gray-200 px-2 sm:px-20 xl:px-36 min-h-[72px] max-h-[100px] flex items-center">

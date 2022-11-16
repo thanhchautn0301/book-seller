@@ -3,53 +3,51 @@ import DashboardLayout from "../../../../layouts/dashboard";
 import Book from "../../../../lib/api/books"
 import moment from 'moment';
 import Image from "next/image";
+import Grid from '@mui/material/Grid';
+import TextField from '@mui/material/TextField';
 import { useGetInvoice } from "../../../../actions/invoice";
-export default function BookDetail({book}){
+import withAuth from "../../../../hoc/withAuth";
+const BookDetail = ({user,book})=>{
     const router = useRouter()
-    const account =  {
-        photoURL : 'https://scontent.fsgn2-4.fna.fbcdn.net/v/t39.30808-1/310613863_1790868551256247_407328907734636743_n.jpg?stp=c0.12.40.40a_cp0_dst-jpg_p40x40&_nc_cat=101&ccb=1-7&_nc_sid=7206a8&_nc_ohc=uNI8bBHFiSkAX9h4hSi&_nc_ht=scontent.fsgn2-4.fna&oh=00_AfCAZiyHh97YWf4KEqP6eeVchgWV-Hl0MuHBnj87mcfMXQ&oe=636E0B58',
-        displayName : 'Admin',
-        email: 'Admin'
-    }
     const {data: dateU,error,loading} =  useGetInvoice()
     return(
-        <DashboardLayout user={account}>
+        <DashboardLayout user={user}>
+            
             {book&&<>
-                <div className="form-group">
-                <label htmlFor="name" >Name</label>
-                <label style={{ marginLeft: 20 }}>{book.name}</label>
+                <Grid container justifyContent="center" xs={10}>
+                    <div>
+            <div className="form-group">
+                <TextField  label="Name" variant="outlined" value={book.name} style={{ marginBottom: 20 ,width: 400}}   disabled/>
             </div>
             <div className="form-group">
-                <label htmlFor="description">Description</label>
-                <label style={{ marginLeft: 20 }}>{book.description}</label>
+            <TextField  label="Description" variant="outlined" value={book.description} style={{ marginBottom: 20,width: 400 }}   disabled/>
             </div>
             <div className="form-group">
-                <label htmlFor="price">Price</label>
-                <label style={{ marginLeft: 20 }}>{book.price}</label>
+                <TextField  label="Price" variant="outlined" value={book.price} style={{ marginBottom: 20 ,width: 400}}   disabled/>
             </div> 
             <div className="form-group">
-                <label htmlFor="quantity">Quantity</label>
-                <label style={{ marginLeft: 20 }}>{book.quantity}</label>
+                <TextField  label="Quantity" variant="outlined" value={book.quantity} style={{ marginBottom: 20 ,width: 400}}   disabled/>
             </div>
             <div className="form-group">
-                <label htmlFor="publicationDate">Publication Date</label>
-                <label style={{ marginLeft: 20 }}>{!book.publication_date ? "" : moment(book.publication_date).format("DD/MM/YYYY")}</label>
+            <TextField  label="Publication Date" variant="outlined" value={book.publicationDate  } style={{ marginBottom: 20 ,width: 400}} disabled  />
             </div>
             <div className="form-group">
-                <label htmlFor="isDel">isDel</label>
-                <label style={{ marginLeft: 20 }}>{book.is_del ? "true":"false"}</label>
+            <TextField  label="isDel" variant="outlined" value={book.is_del ? "true":"false"} style={{ marginBottom: 20 ,width: 400}}   disabled/>
             </div>
             <div className="form-group">
                 <Image width={250} height={250} src="/books/book1.jpg" />
             </div>
-          
+            </div>
+                </Grid>
             </>}
+            
         </DashboardLayout>
     )
 }
 export async function getStaticProps({params}) {
     const rs = await new Book().getById(params.id)
     const book = rs.data
+    console.log(book)
     return {
         props: {book}
     }
@@ -65,3 +63,4 @@ export async function getStaticPaths(){
     })
     return {paths, fallback:true}
 }
+export default withAuth(BookDetail)();

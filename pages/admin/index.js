@@ -19,10 +19,10 @@ const Admin =  ({user,invoices}) => {
                         <TableRow>
                             <TableCell>#</TableCell>
                             <TableCell>Name</TableCell>
-                            <TableCell align="right">Phone</TableCell>
-                            <TableCell align="right">Address</TableCell>
-                            <TableCell align="right">Total</TableCell>
-                            <TableCell align="right">Status</TableCell>
+                            <TableCell align="left">Phone</TableCell>
+                            <TableCell align="left">Address</TableCell>
+                            <TableCell align="left">Total</TableCell>
+                            <TableCell align="left">Status</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -43,16 +43,6 @@ const Admin =  ({user,invoices}) => {
         </DashboardLayout>
     )
 }
-
-// export const getServerSideProps = withAuth(async ({req, res}, user) => {
-//     const rs = await new Invoice().getAll()
-//     const invoices = rs.data.content
-//      return {
-//         props: {invoices}
-//     }
-// });
-// export default Admin
-
 export async function getServerSideProps () {
     // const user = await new.
     const rs = await new Invoice().getAll()

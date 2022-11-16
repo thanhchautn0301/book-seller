@@ -4,7 +4,8 @@ import TopicForm from "../../../../components/form/TopicForm";
 import DashboardLayout from "../../../../layouts/dashboard";
 import Router from 'next/router';
 import {toast} from "react-toastify";
-export default function TopicEdit({user}){
+import withAuth from "../../../../hoc/withAuth";
+ const TopicEdit = ({user})=>{
     const router = useRouter()
 
     const [updateTopic,{data,error,loading}] =  useUpdateTopic()
@@ -33,3 +34,4 @@ export default function TopicEdit({user}){
         </DashboardLayout>
     )
 }
+export default withAuth(TopicEdit)();
