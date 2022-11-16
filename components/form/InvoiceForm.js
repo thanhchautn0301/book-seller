@@ -7,17 +7,13 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import * as React from 'react';
 import Autocomplete from '@mui/material/Autocomplete';
+import {InputLabel, MenuItem, Select} from "@mui/material";
 
-const options = ['Lên Đơn', 'Đang Ship', 'Hoàn Tất'];
 export default function InvoiceForm({onSubmit,initialData={}}) {
-    const [value, setValue1] = React.useState(options[0]);
-    const [inputValue, setInputValue] = React.useState('');
-    const {register, handleSubmit, setValue} = useForm({defaultValues: initialData})
-    useEffect(() => {
-        register('startDate');
-        register('endDate');
-    }, [register])
+    const options = ['Lên Đơn', 'Đang Ship', 'Hoàn Tất'];
+    const {register, handleSubmit, setValue,getValues} = useForm({defaultValues: initialData})
 
+    const [status, setStatus] = React.useState(getValues("status")||options[0]);
     return (
         <Grid container justifyContent="center" xs={10}>
         <form onSubmit={handleSubmit(onSubmit)  }>
@@ -40,23 +36,23 @@ export default function InvoiceForm({onSubmit,initialData={}}) {
                     <TextField id="paymentCode" label="Payment Code" variant="outlined"  {...register("paymentCode")} style={{ marginBottom: 20 }}/>
                 </div>
                 <div className="form-group">
-                <Autocomplete
-                    
-                    value={value}
-                    onChange={(event, newValue) => {
-                    setValue(newValue);
-                    }}
-                    inputValue={inputValue}
-                    onInputChange={(event, newInputValue) => {
-                    setInputValue(newInputValue);
-                    }}
-                    id="Status"
-                    options={options}
-                    sx={{ width: 220 }}
-                    renderInput={(params) => <TextField {...params} label="Status" 
-                    style={{ marginBottom: 20 }}  {...register("status")} 
-                    />}
-                />
+
+                    <Select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        label="Status"
+                        {...register("status")}
+                        onChange={(data)=>{
+                            setValue("status", data)
+                            console.log(data)
+                            setStatus(data.target.value)
+                        }}
+                        value={status}
+                    >
+                        {options && options.map((item)=>
+                            <MenuItem value={item}>{item}</MenuItem>
+                        )}
+                    </Select>
                 </div>
             <Button variant="outlined" type="submit">Create</Button>
         </form>
