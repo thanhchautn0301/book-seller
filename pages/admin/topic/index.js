@@ -52,11 +52,12 @@ const Topics = ({user,topics}) => {
                                  toast.success("Xoá thành công")
                                  Router.push("./topic")
                              }}>
-                                <IconButton aria-label="delete">
-                                    <DeleteIcon />
-                                </IconButton>
-                            </Link>
-                            <Link href={`topic/${item.id}`}>
+                                 <IconButton aria-label="delete">
+                                     <DeleteIcon />
+                                 </IconButton>
+                             </Link>
+
+                             <Link href={`topic/${item.id}`}>
                                 <IconButton aria-label="Detail">
                                     <InfoTwoToneIcon />
                                 </IconButton>
