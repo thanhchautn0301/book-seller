@@ -18,4 +18,13 @@ export default async function handleInvoice(req,res){
              return res.status(e.status||422).json(e.response.data)
         }
     }
+    else if(req.method === 'DELETE'){
+        try{
+            const accessToken = process.env.TOKEN_API
+            const json = await new Authors(accessToken).delete(req.query.id)
+            return res.json(json.data);
+        }catch (e){
+            return res.status(e.status||422).json(e.response.data)
+        }
+    }
 }

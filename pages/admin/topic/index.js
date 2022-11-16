@@ -17,6 +17,9 @@ import {
 } from "@mui/material";
 
 import withAuth from "../../../hoc/withAuth";
+import axios from "axios";
+import {toast} from "react-toastify";
+import Router from "next/router";
 const Topics = ({user,topics}) => {
     return (
         <DashboardLayout user={user}>
@@ -44,7 +47,11 @@ const Topics = ({user,topics}) => {
                                     <EditIcon />
                                 </IconButton>
                             </Link>
-                            <Link href={`topic/${item.id}/delete`}>
+                             <Link onClick={()=>{
+                                 axios.delete(`../api/v2/topics/${item.id}`)
+                                 toast.success("Xoá thành công")
+                                 Router.push("./topic")
+                             }}>
                                 <IconButton aria-label="delete">
                                     <DeleteIcon />
                                 </IconButton>

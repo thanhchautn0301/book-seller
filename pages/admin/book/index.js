@@ -6,6 +6,9 @@ import Book from "../../../lib/api/books"
 import InfoTwoToneIcon from '@mui/icons-material/InfoTwoTone';
 
 import withAuth from "../../../hoc/withAuth";
+import axios from "axios";
+import Router from "next/router";
+import {toast} from "react-toastify";
 const Books=({user,books})=>{
     return (
         <DashboardLayout user={user}>
@@ -38,7 +41,11 @@ const Books=({user,books})=>{
                                         <EditIcon />
                                     </IconButton>
                                 </Link>
-                                <Link href={`book/${item.id}/edit`}>
+                                <Link onClick={()=>{
+                                    axios.delete(`../api/v2/books/${item.id}`)
+                                    toast.success("Xoá thành công")
+                                    Router.push("./book")
+                                }}>
                                     <IconButton aria-label="delete">
                                         <DeleteIcon />
                                     </IconButton>
@@ -60,7 +67,6 @@ const Books=({user,books})=>{
 export async function getServerSideProps () {
     const rs = await new Book().getAll()
     const books = rs.data.content
-    console.log(books)
     return {
         props: {books}
     }

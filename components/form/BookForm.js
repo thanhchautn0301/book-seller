@@ -7,17 +7,16 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Stack from "@mui/material/Stack";
 import { max } from "date-fns";
+import {FormControl, InputLabel, MenuItem, Select} from "@mui/material";
+import {useGetAuthor} from "../../actions/author";
+import {useGetTopic} from "../../actions/topic";
 
-export default function BookForm({ onSubmit, initialData = {} }) {
-  const curentDay = new Date();
-  const { register, handleSubmit, setValue } = useForm({
+export default function BookForm({ onSubmit, initialData = {}, authors, topics }) {
+  const { register, handleSubmit, setValue,getValues } = useForm({
     defaultValues: initialData,
   });
-  useEffect(() => {
-    register("startDate");
-    register("endDate");
-  }, [register]);
-
+  const [authorInit, setAuthorInit] = useState(getValues("authorEntity.id"))
+  const [topicInit, setTopicInit] = useState(getValues("topicEntity.id"))
   return (
     <Grid container justifyContent="center" xs={10}>
       <form
@@ -82,12 +81,60 @@ export default function BookForm({ onSubmit, initialData = {} }) {
         <div className="form-group">
           <TextField
             id="page"
-            label="Số lượng trang trong sách"
+            label="Số trang"
             variant="outlined"
             {...register("page")}
             style={{ marginBottom: 20, width: 400  }}
           />
         </div>
+
+        <div className="form-group">
+        <Box sx={{ minWidth: 120 }}>
+          <FormControl fullWidth>
+            <InputLabel id="demo-simple-select-label">Tác giả </InputLabel>
+            <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                label="Tác giả"
+                {...register("authorEntity.id")}
+                onChange={(data)=>{
+                  setValue("authorEntity.id", data)
+                  console.log(data)
+                  setAuthorInit(data.target.value)
+                }}
+                value={authorInit}
+            >
+              {authors && authors?.map((item)=>
+                <MenuItem value={item.id}>{item.name}</MenuItem>
+              )}
+            </Select>
+          </FormControl>
+        </Box>
+        </div>
+        <br/>
+        <div className="form-group">
+        <Box sx={{ minWidth: 120 }}>
+          <FormControl fullWidth>
+            <InputLabel id="demo-simple-select-label1">Chủ đề </InputLabel>
+            <Select
+                labelId="demo-simple-select-label1"
+                id="demo-simple-select1"
+                label="Chủ đề"
+                {...register("topicEntity.id")}
+                onChange={(data)=>{
+                  setValue("topicEntity.id", data)
+                  setTopicInit(data.target.value)
+                }}
+                value={topicInit}
+            >
+              {topics && topics?.map((item)=>
+                  <MenuItem value={item.id}>{item.name}</MenuItem>
+              )}
+            </Select>
+          </FormControl>
+        </Box>
+        </div>
+        <br/>
         <Button variant="outlined" type="submit">
           Create
         </Button>
