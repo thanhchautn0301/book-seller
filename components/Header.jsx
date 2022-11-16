@@ -15,12 +15,18 @@ function Header() {
     if (localStorage) {
       const updateCart = () => {
         const cart = JSON.parse(localStorage.getItem("cart"))?.cart;
-
-        if (cart !== null && cart?.length > 0) {
-          setCartQuantity(cart.length);
+        if (cart !== undefined) {
+          const cartList = Array.from(cart);
+          let total = 0;
+          cartList.map((book) => {
+            total+= book.quantity
+          });
+          setCartQuantity(total);
         }
       };
-      window.addEventListener("storage", updateCart());
+      window.addEventListener("storage", () => {
+        updateCart();
+      });
       return () => {
         window.removeEventListener("storage", updateCart());
       };
