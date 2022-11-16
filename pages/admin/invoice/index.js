@@ -10,7 +10,7 @@ const Invoices = ({user,invoices})=>{
     return (
         <DashboardLayout user={user}>
             <Link href={`invoice/new`}>
-            <Button variant="text">Create</Button>
+            {/*<Button variant="text">Create</Button>*/}
             </Link>
             <br/>
             <TableContainer component={Paper}>

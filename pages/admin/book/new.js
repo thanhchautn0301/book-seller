@@ -12,11 +12,11 @@ const CreateBook = ({user,authors,topics})=>{
     const _createBook = async (data) => {
         try{
             await createBook(data);
+            toast.success('Book has been created!')
+            Router.push("/admin/book");
         }catch (e) {
             // toast.error('Error : '+e)
         }
-        toast.success('Book has been updated!')
-        Router.push("/admin/book");
         // console.log(data)
     }
     return (

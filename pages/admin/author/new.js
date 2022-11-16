@@ -12,11 +12,11 @@ const CreateAuthor=({user})=>{
     const _createAuthor = async (data) => {
         try{
             await createAuthor(data);
+            toast.success('Author has been created!')
+            Router.push("/admin/author");
         }catch (e) {
             // toast.error('Error : '+e)
         }
-        toast.success('Book has been updated!')
-        Router.push("/admin/book");
     }
     return (
         <DashboardLayout user={user}>

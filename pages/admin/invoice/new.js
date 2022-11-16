@@ -4,7 +4,7 @@ import InvoiceForm from "../../../components/form/InvoiceForm"
 import withAuth from "../../../hoc/withAuth";
 import {toast} from "react-toastify";
 import Router from "next/router";
-export default function CreateInvoice({user}){
+const CreateInvoice = ({user}) =>{
 
     const [createInvoice,{data,loading,error}] = useCreateInvoice()
     const _createInvoice = async (data) => {
