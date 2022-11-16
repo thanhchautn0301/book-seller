@@ -62,12 +62,19 @@ function Header() {
           </>
         )}
         {user && (
+            <>
+            <a
+                className="p-2 text-gray-600 hover:text-gray-800 hover:bg-gray-200 h-full cursor-pointer"
+                href="/invoicechecking"
+            >
+              Đơn hàng
+            </a>
           <a
             className="p-2 text-gray-600 hover:text-gray-800 hover:bg-gray-200 h-full cursor-pointer"
             href="/api/auth/logout"
           >
             Đăng xuất
-          </a>
+          </a></>
         )}
       </div>
     </header>

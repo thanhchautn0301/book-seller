@@ -23,13 +23,13 @@ const CreateTopic = (user)=>{
 
     const [createTopic,{data,loading,error}] = useCreateTopic()
     const _createTopic = async (data) => {
-        try{
+        // try{
             await createTopic(data);
-            toast.success('Portfolio has been updated!')
+            toast.success('Topic has been updated!')
             Router.push("/admin/topic");
-        }catch (e) {
-            toast.error('Error : '+e)
-        }
+        // }catch (e) {
+        //     toast.error('Error : '+e)
+        // }
     }
     return (
         <DashboardLayout user={user}>

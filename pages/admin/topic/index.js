@@ -1,7 +1,6 @@
 import DashboardLayout from "../../../layouts/dashboard";
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
-import Link from 'next/link'
 import InfoTwoToneIcon from '@mui/icons-material/InfoTwoTone';
 import Topic from "../../../lib/api/topics"
 import {
@@ -13,7 +12,8 @@ import {
     TableCell,
     TableContainer,
     TableHead,
-    TableRow
+    TableRow,
+    Link
 } from "@mui/material";
 
 import withAuth from "../../../hoc/withAuth";
@@ -52,11 +52,12 @@ const Topics = ({user,topics}) => {
                                  toast.success("Xoá thành công")
                                  Router.push("./topic")
                              }}>
-                                <IconButton aria-label="delete">
-                                    <DeleteIcon />
-                                </IconButton>
-                            </Link>
-                            <Link href={`topic/${item.id}`}>
+                                 <IconButton aria-label="delete">
+                                     <DeleteIcon />
+                                 </IconButton>
+                             </Link>
+
+                             <Link href={`topic/${item.id}`}>
                                 <IconButton aria-label="Detail">
                                     <InfoTwoToneIcon />
                                 </IconButton>
