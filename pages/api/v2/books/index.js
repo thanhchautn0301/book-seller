@@ -7,7 +7,6 @@ export default async (req,res)=>{
         const accessToken = process.env.TOKEN_API
         const data = req.body
         const js = await new Books(accessToken).create(data)
-        Router.push("/admin/book");
         return res.json(js.data)
     }catch (e){
         return res.status(e.status || 422).json(e.response.data)

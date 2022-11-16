@@ -1,19 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import { ShoppingBagIcon, ShoppingCartIcon } from "@heroicons/react/24/solid";
 import { getPaymentLink } from "../services/stripe";
 import { useRouter } from "next/router";
 import { useRef } from "react";
-import Link from 'next/link'
-// Book.propTypes = {
-//   id: PropTypes.string,
-//   name: PropTypes.string,
-//   image: PropTypes.string,
-//   price: PropTypes.string,
-//   quantity: PropTypes.string
-// };
-
-const Book = ({ id, name, image, price, quantity, priceId }) => {
+import Link from "next/link";
+import { ToastContainer, toast } from "react-toastify";
+import { info } from "autoprefixer";
+import { setCart } from "services/cart";
+const Book = ({ id, name, image, price, quantity, priceId, }) => {
   const router = useRouter();
   const handleBuy = () => {
     const bookList = [
@@ -25,6 +20,9 @@ const Book = ({ id, name, image, price, quantity, priceId }) => {
     getPaymentLink(bookList).then((res) => {
       router.push(res.url);
     });
+  };
+  const handleCart = (bookId, bookName, price, quantity, priceId) => {
+    setCart(bookId, bookName, price, quantity, priceId);
   };
   return (
     <div className="border rounded flex gap-4 sm:flex-wrap lg:flex-nowrap">
@@ -40,28 +38,36 @@ const Book = ({ id, name, image, price, quantity, priceId }) => {
       </div>
       <div className="w-full flex items-center">
         <div className="book-info w-full">
-          <Link href={`/details?id=${id}`} className="block hover:text-gray-500 text-sm flex-1 p-4 border-b-[1px] mb-3">
+          <Link
+            href={`/details?id=${id}`}
+            className="block hover:text-gray-500 text-sm flex-1 p-4 border-b-[1px] mb-3"
+          >
             {name}
           </Link>
 
           <div className="text-sm font-semibold px-4">
             {price}
-            <span className="underline">đ</span>
+            <span className="underline">$</span>
           </div>
           <div className="book-action p-4 text-sm flex flex-col gap-3">
             <button
-              href=""
-              className="text-white bg-green-500
-             hover:bg-green-400 p-2 rounded-sm flex items-center
-              justify-center"
+              className={`text-white
+              p-2 rounded-sm flex items-center
+              justify-center ${
+                quantity < 0
+                  ? "bg-gray-400 cursor-default"
+                  : "bg-green-500 hover:bg-green-400"
+              }`}
               onClick={handleBuy}
+              disabled={quantity < 0}
             >
               Mua ngay&nbsp;
               <ShoppingBagIcon className="h-5 w-5" />
             </button>
             <button
               className="text-white bg-gray-100 hover:bg-gray-200
-             p-2 rounded-sm flex items-center justify-center"
+             p-2 rounded-sm flex items-center justify-center outline-none"
+              onClick={() => handleCart(id, name, price , quantity, priceId)}
             >
               <ShoppingCartIcon className="h-5 w-5 text-gray-500" />
             </button>

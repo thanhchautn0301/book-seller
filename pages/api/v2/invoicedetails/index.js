@@ -6,6 +6,7 @@ export default async (req,res)=>{
     try{
         const accessToken = process.env.TOKEN_API
         const data = req.body
+        console.log(data)
         const js = await new InvoiceDetails(accessToken).create(data)
         return res.json(js.data)
     }catch (e){

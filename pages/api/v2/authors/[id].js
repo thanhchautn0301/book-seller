@@ -4,7 +4,6 @@ import axios from "axios";
 
 export default async function handleInvoice(req,res){
     if(req.method === 'GET'){
-        const rs = await auth0.getSession(req,res)
         const json = await new Authors().getById(req.query.id)
         console.log(res.json(json.data));
         return res.json(json.data);
@@ -17,6 +16,15 @@ export default async function handleInvoice(req,res){
             return res.json(json.data);
         }catch (e){
              return res.status(e.status||422).json(e.response.data)
+        }
+    }
+    else if(req.method === 'DELETE'){
+        try{
+            const accessToken = process.env.TOKEN_API
+            const json = await new Authors(accessToken).delete(req.query.id)
+            return res.json(json.data);
+        }catch (e){
+            return res.status(e.status||422).json(e.response.data)
         }
     }
 }
